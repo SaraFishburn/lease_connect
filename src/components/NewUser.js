@@ -8,9 +8,9 @@ class NewUser extends Component {
             name: "",
             email: "",
             password: "",
-            phoneNumber: "",
-            roleName: "",
-            houseId: "",
+            phone_number: "",
+            role_name: "",
+            house_id: "",
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -33,35 +33,43 @@ class NewUser extends Component {
 
     phoneHandler = (event) => {
         this.setState({
-            phoneNumber: event.target.value
+            phone_number: event.target.value
         })
     }
 
     roleHandler = (event) => {
         this.setState({
-            roleName: event.target.value
+            role_name: event.target.value
         })
     }
 
     houseHandler = (event) => {
         this.setState({
-            houseId: event.target.value
+            house_id: event.target.value
         })
     }
 
-    handleSubmit = (event) => {
-        alert(`${this.state.firstName} ${this.state.lastName}  Registered Successfully !!!!`)
+    handleSubmit = async (event) => {
+        alert(`${this.state.name} Registered Successfully!`)
+        console.log(this.state);
+        event.preventDefault() 
+        const res = await fetch("http://localhost:4000/api/users", {
+            method: "POST",
+            body: JSON.stringify(this.state),
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": ``,
+            },
+        });  
         console.log(this.state);
         this.setState({
             name: "",
             email: "",
             password: "",
-            phoneNumber: "",
-            roleName: "",
-            houseId: "",
+            phone_number: "",
+            role_name: "",
+            house_id: "",
         })
-     event.preventDefault()
-        
     }
 
     render() {
@@ -70,7 +78,8 @@ class NewUser extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create Account</h1>
-                    <label>Role :</label><select onChange={this.roleHandler} defaultValue="Select Role">
+                    <label>Role :</label>
+                    <select onChange={this.roleHandler} defaultValue="Select Role">
                         <option defaultValue>Select Role</option>
                         <option value="Tenant">Tenant</option>
                         <option value="Property Manager">Property Manager</option>
@@ -78,8 +87,9 @@ class NewUser extends Component {
                     <label>Name :</label> <input type="text" value={this.state.name} onChange={this.nameHandler} placeholder="Name..." /><br />
                     <label>Email :</label> <input type="text" value={this.state.email} onChange={this.emailHandler} placeholder="Email..." /><br />
                     <label>Temporary Password :</label> <input type="password" value={this.state.password} onChange={this.passwordHandler} placeholder="Password..." /><br />
-                    <label>Phone :</label> <input type="text" value={this.state.phoneNumber} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
-                    <label>Property :</label><select onChange={this.houseHandler} defaultValue="Select Property">
+                    <label>Phone :</label> <input type="text" value={this.state.phone_number} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
+                    <label>Property :</label>
+                    <select onChange={this.houseHandler} defaultValue="Select Property">
                         <option defaultValue>Select Property</option>
                         <option value="Tamarama Beach Unit">Tamarama Beach Unit</option>
                         <option value="Vaucluse Family Retreat">Vaucluse Family Retreat</option>
