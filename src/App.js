@@ -1,4 +1,5 @@
 import React from 'react';
+import Calendar from "./components/calendar/Calendar"
 
 function App() {
   return (
@@ -6,6 +7,8 @@ function App() {
       <header>
         <h1>Lease Connect</h1>
       </header>
+
+      <Calendar />
     </div>
   );
 }
