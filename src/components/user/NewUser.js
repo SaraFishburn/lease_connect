@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./styles.css"
 
 class NewUser extends Component {
     constructor(props) {
@@ -16,18 +17,18 @@ class NewUser extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
+    componentDidMount() { 
+        fetch('http://localhost:4000/api/houses')
+        .then(res=>res.json())
+        .then(json=>console.log(json))
+    }
+
     // componentDidMount() { 
     //     fetch('http://localhost:4000/houses/index')
     //     .then(res=>res.json())
-    //     .then(json=>console.log(json))
+    //     .then(json=>{ this.setState({ houses: json })})
+    //     console.log(this.houses)
     // }
-
-    componentDidMount() { 
-        fetch('http://localhost:4000/houses/index')
-        .then(res=>res.json())
-        .then(json=>{ this.setState({ houses: json })})
-        console.log(this.houses)
-    }
 
     nameHandler = (event) => {
         this.setState({
@@ -83,27 +84,27 @@ class NewUser extends Component {
 
     render() {
         return (
-            <div>
+            <div class="formDiv">
 
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create Account</h1>
-                    <label>Role :</label>
+                    <label>Role :</label><br/>
                     <select onChange={this.roleHandler} defaultValue="Select Role">
                         <option defaultValue>Select Role</option>
                         <option value="Tenant">Tenant</option>
                         <option value="Property Manager">Property Manager</option>
                     </select><br/>
-                    <label>Name :</label> <input type="text" value={this.state.name} onChange={this.nameHandler} placeholder="Name..." /><br />
-                    <label>Email :</label> <input type="text" value={this.state.email} onChange={this.emailHandler} placeholder="Email..." /><br />
-                    <label>Temporary Password :</label> <input type="password" value={this.state.password} onChange={this.passwordHandler} placeholder="Password..." /><br />
-                    <label>Phone :</label> <input type="text" value={this.state.phone_number} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
-                    <label>Property :</label>
-                    {/* <select defaultValue="Select Property">
+                    <label>Name :</label><br/><input type="text" value={this.state.name} onChange={this.nameHandler} placeholder="Name..." /><br />
+                    <label>Email :</label><br/><input type="text" value={this.state.email} onChange={this.emailHandler} placeholder="Email..." /><br />
+                    <label>Temporary Password :</label><br/><input type="text" value={this.state.password} onChange={this.passwordHandler} placeholder="Password..." /><br />
+                    <label>Phone :</label><br/><input type="text" value={this.state.phone_number} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
+                    <label>Property :</label><br/>
+                    <select onClick={"Test"} defaultValue="Select Property">
                         <option defaultValue>Select Property</option>
-                        {this.data.map(house => (
+                        {/* {this.data.map(house => (
                             <option value={this.house.id}>{this.house.address}</option>
-                        ))}
-                    </select><br/> */}
+                        ))} */}
+                    </select><br/>
                     <input type="submit" value="Create & Email" />
                 </form>
 
