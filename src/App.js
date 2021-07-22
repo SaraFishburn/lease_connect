@@ -2,6 +2,8 @@ import React from 'react';
 import Calendar from "./components/calendar/Calendar"
 import NewUser from './components/NewUser';
 import './global.css'
+import NewHouse from './components/NewHouse';
+
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
       <header>
         <h1>Lease Connect</h1>
         <NewUser/>
+        <NewHouse />
       </header>
 
       <Calendar />
