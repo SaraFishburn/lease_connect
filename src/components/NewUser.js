@@ -11,8 +11,22 @@ class NewUser extends Component {
             phone_number: "",
             role_name: "",
             house_id: "",
+            houses: [],
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    // componentDidMount() { 
+    //     fetch('http://localhost:4000/houses/index')
+    //     .then(res=>res.json())
+    //     .then(json=>console.log(json))
+    // }
+
+    componentDidMount() { 
+        fetch('http://localhost:4000/houses/index')
+        .then(res=>res.json())
+        .then(json=>{ this.setState({ houses: json })})
+        console.log(this.houses)
     }
 
     nameHandler = (event) => {
@@ -43,11 +57,6 @@ class NewUser extends Component {
         })
     }
 
-    houseHandler = (event) => {
-        this.setState({
-            house_id: event.target.value
-        })
-    }
 
     handleSubmit = async (event) => {
         alert(`${this.state.name} Registered Successfully!`)
@@ -89,11 +98,12 @@ class NewUser extends Component {
                     <label>Temporary Password :</label> <input type="password" value={this.state.password} onChange={this.passwordHandler} placeholder="Password..." /><br />
                     <label>Phone :</label> <input type="text" value={this.state.phone_number} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
                     <label>Property :</label>
-                    <select onChange={this.houseHandler} defaultValue="Select Property">
+                    {/* <select defaultValue="Select Property">
                         <option defaultValue>Select Property</option>
-                        <option value="Tamarama Beach Unit">Tamarama Beach Unit</option>
-                        <option value="Vaucluse Family Retreat">Vaucluse Family Retreat</option>
-                    </select><br/>
+                        {this.data.map(house => (
+                            <option value={this.house.id}>{this.house.address}</option>
+                        ))}
+                    </select><br/> */}
                     <input type="submit" value="Create & Email" />
                 </form>
 
