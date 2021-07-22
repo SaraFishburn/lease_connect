@@ -1,5 +1,5 @@
 import React from 'react';
-import Calendar from "./components/calendar/Calendar"
+import CalendarPage from "./pages/calendar_page/CalendarPage"
 import NewUser from './components/user/NewUser';
 import './global.css'
 import NewHouse from './components/house/NewHouse';
@@ -14,7 +14,7 @@ function App() {
         <NewHouse />
       </header>
 
-      <Calendar />
+      <CalendarPage></CalendarPage>
     </div>
   );
 }

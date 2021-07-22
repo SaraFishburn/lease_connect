@@ -12,14 +12,9 @@ class NewHouse extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    titleHandler = (event) => {
+    handleChange = (event) => {
         this.setState({
-            title: event.target.value
-        })
-    }
-    addressHandler = (event) => {
-        this.setState({
-            address: event.target.value
+            [event.target.name] : event.target.value
         })
     }
     
@@ -48,8 +43,8 @@ class NewHouse extends Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create House</h1>
-                    <label>Title :</label><br/><input type="text" value={this.state.title} onChange={this.titleHandler} placeholder="Property Title..." /><br />
-                    <label>Address :</label><br/><input type="text" value={this.state.address} onChange={this.addressHandler} placeholder="Property Address..." /><br />
+                    <label>Title :</label><br/><input name='title' type="text" value={this.state.title} onChange={this.handleChange} placeholder="Property Title..." /><br />
+                    <label>Address :</label><br/><input name='address' type="text" value={this.state.address} onChange={this.handleChange} placeholder="Property Address..." /><br />
                     <input type="submit" value="Create House" />
                 </form>
 

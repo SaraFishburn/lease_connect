@@ -17,51 +17,24 @@ class NewUser extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount() { 
+    componentDidMount() {
+        this.getHouses();
+    }
+
+    getHouses() {
         fetch('http://localhost:4000/api/houses')
-        .then(res=>res.json())
-        .then(json=>console.log(json))
+            .then (results => results.json())
+            .then (results => this.setState({houses: results}))
     }
 
-    // componentDidMount() { 
-    //     fetch('http://localhost:4000/houses/index')
-    //     .then(res=>res.json())
-    //     .then(json=>{ this.setState({ houses: json })})
-    //     console.log(this.houses)
-    // }
-
-    nameHandler = (event) => {
+    handleChange = (event) => {
         this.setState({
-            name: event.target.value
+            [event.target.name] : event.target.value
         })
     }
-    emailHandler = (event) => {
-        this.setState({
-            email: event.target.value
-        })
-    }
-    passwordHandler = (event) => {
-        this.setState({
-            password: event.target.value
-        })
-    }
-
-    phoneHandler = (event) => {
-        this.setState({
-            phone_number: event.target.value
-        })
-    }
-
-    roleHandler = (event) => {
-        this.setState({
-            role_name: event.target.value
-        })
-    }
-
 
     handleSubmit = async (event) => {
-        alert(`${this.state.name} Registered Successfully!`)
-        console.log(this.state);
+        alert(`${this.state.name} Registered Successfully!`);
         event.preventDefault() 
         const res = await fetch("http://localhost:4000/api/users", {
             method: "POST",
@@ -71,7 +44,6 @@ class NewUser extends Component {
                 "Authorization": ``,
             },
         });  
-        console.log(this.state);
         this.setState({
             name: "",
             email: "",
@@ -79,31 +51,33 @@ class NewUser extends Component {
             phone_number: "",
             role_name: "",
             house_id: "",
+            houses: []
         })
+        this.getHouses()
     }
 
     render() {
         return (
             <div class="formDiv">
-
+              
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create Account</h1>
                     <label>Role :</label><br/>
-                    <select onChange={this.roleHandler} defaultValue="Select Role">
+                    <select name='role_name' onChange={this.handleChange} defaultValue="Select Role">
                         <option defaultValue>Select Role</option>
                         <option value="Tenant">Tenant</option>
                         <option value="Property Manager">Property Manager</option>
                     </select><br/>
-                    <label>Name :</label><br/><input type="text" value={this.state.name} onChange={this.nameHandler} placeholder="Name..." /><br />
-                    <label>Email :</label><br/><input type="text" value={this.state.email} onChange={this.emailHandler} placeholder="Email..." /><br />
-                    <label>Temporary Password :</label><br/><input type="text" value={this.state.password} onChange={this.passwordHandler} placeholder="Password..." /><br />
-                    <label>Phone :</label><br/><input type="text" value={this.state.phone_number} onChange={this.phoneHandler} placeholder="Phone Number..." /><br />
+                    <label>Name :</label><br/><input name='name' type="text" value={this.state.name} onChange={this.handleChange} placeholder="Name..." /><br />
+                    <label>Email :</label><br/><input name='email' type="text" value={this.state.email} onChange={this.handleChange} placeholder="Email..." /><br />
+                    <label>Temporary Password :</label><br/><input name='password' type="text" value={this.state.password} onChange={this.handleChange} placeholder="Password..." /><br />
+                    <label>Phone :</label><br/><input name='phone_number' type="text" value={this.state.phone_number} onChange={this.handleChange} placeholder="Phone Number..." /><br />
                     <label>Property :</label><br/>
-                    <select onClick={"Test"} defaultValue="Select Property">
+                    <select name='house_id' onChange={this.handleChange} defaultValue="Select Property">
                         <option defaultValue>Select Property</option>
-                        {/* {this.data.map(house => (
-                            <option value={this.house.id}>{this.house.address}</option>
-                        ))} */}
+                    {this.state.houses.map(house => (
+                        <option value={house.id}>{house.id}- {house.title}</option>
+                    ))}
                     </select><br/>
                     <input type="submit" value="Create & Email" />
                 </form>
@@ -115,45 +89,3 @@ class NewUser extends Component {
 }
 
 export default NewUser
-
-
-
-
-// import React from "react"
-
-// const NewUser = () => {
-
-//     const submit = async (event) => {
-
-//     }
-
-//     return (
-//         <>
-//         <h1>Create Account</h1>
-//         <h3>Role:</h3>
-//         <form onSubmit={submit}>
-//             <label>
-//                 Name:
-//                 <input type="text" name="name" />
-//             </label>
-//             <select>
-//                 <option value="grapefruit">Grapefruit</option>
-//                 <option value="lime">Lime</option>
-//                 <option selected value="coconut">Coconut</option>
-//                 <option value="mango">Mango</option>
-//             </select>
-//                 <label for="email">Email:</label>
-//                 <input type="email" />
-//                 <label for="password">Temporary Password:</label>
-//                 <input type="password" />
-//                 <label for="phone_number">Phone:</label>
-//                 <input type="phone_number" />
-//                 <label for="house_id">Property:</label>
-//                 <input type="house_id" />
-//                 <button type="submit">Create & Email</button>
-//         </form>
-//         </>
-//     )
-// }
-
-// export default NewUser
