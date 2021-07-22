@@ -3,6 +3,7 @@ import Calendar from "./components/calendar/Calendar"
 import NewUser from './components/NewUser';
 import './global.css'
 import NewHouse from './components/NewHouse';
+import Maintenance from './components/Maintenance';
 
 
 function App() {
