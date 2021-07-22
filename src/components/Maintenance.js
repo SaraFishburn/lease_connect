@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from "react"
 
-class Maintenance extends Component {
-    
+function Maintenance(props) {
+
+  // logic here
+  
+  return (
+    <>
+    <h1>Hello</h1>;
+    </>
+  )
 }
 
-
-export default Maintenance
+export default Maintenance;
