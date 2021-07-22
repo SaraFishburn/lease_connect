@@ -15,7 +15,12 @@ class Maintenance extends Component {
         this.setState({
             requestSummary: event.target.value
         })
+    }
 
+    handleDescription = (event) => {
+        this.setState({
+            description: event.target.value
+        })
     }
 
 render() {
@@ -26,7 +31,14 @@ render() {
                 <input 
                 type ='text' 
                 value = {this.state.requestSummary} 
-                onChange={this.handleRequestSummary} />
+                onChange ={this.handleRequestSummary} />
+
+                <label>Description</label>
+                <input
+                type = 'text'
+                value = {this.state.description}
+                onChange = {this.handleDescription} />
+                
             </div>
         </form>
       )

@@ -13,6 +13,7 @@ function App() {
         <h1>Lease Connect</h1>
         <NewUser/>
         <NewHouse />
+        <Maintenance />
       </header>
 
       <Calendar />
