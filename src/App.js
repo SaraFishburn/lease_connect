@@ -1,5 +1,6 @@
 import React from 'react';
 import NewUser from './components/NewUser';
+import NewHouse from './components/NewHouse';
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <header>
         <h1>Lease Connect</h1>
         <NewUser/>
+        <NewHouse />
       </header>
     </div>
   );
