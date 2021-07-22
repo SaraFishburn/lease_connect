@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import SimpleReactCalendar from 'simple-react-calendar'
 import Day from 'simple-react-calendar/lib/RenderPropsComponents/Day'
 import DayOfWeek from 'simple-react-calendar/lib/RenderPropsComponents/DayOfWeek'
@@ -5,8 +6,6 @@ import './styles.scss'
 
 
 export default function Calendar(props) {
-  
-  
 
   return (
     <SimpleReactCalendar
@@ -17,6 +16,8 @@ export default function Calendar(props) {
       // add symbols for previous and next month buttons
       headerPrevArrow='<'
       headerNextArrow='>'
+      onMonthChange={newMonth => props.setCurrentMonth(newMonth)}
+      activeMonth={props.currentMonth}
     />
   )
 }

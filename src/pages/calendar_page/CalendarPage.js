@@ -7,8 +7,8 @@ import './styles.scss'
 const CalendarPage = () => {
 
   const [events, setEvents] = useState([])
+  const [currentMonth, setCurrentMonth] = useState(new Date())
 
-  
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_ENDPOINT}events`)
     .then(res => res.json())
@@ -22,15 +22,15 @@ const CalendarPage = () => {
       return acc
     }, {})
   }
-
-  console.log(formattedEvents(events))
   
   return (
     <div class="calendar-page">
-      <Calendar {...{events: formattedEvents(events)}}/>
-      {events.map(event => (
-        <Event {...event} />
-      ))}
+      <Calendar {...{events: formattedEvents(events), setCurrentMonth, currentMonth}}/>
+      {events.map(event => {
+        if (Dayjs(event.datetime).format('MM-YYYY') == Dayjs(currentMonth).format('MM-YYYY')) {
+          return <Event {...{event}} />
+        }
+      })}
     </div>
   )
 }
