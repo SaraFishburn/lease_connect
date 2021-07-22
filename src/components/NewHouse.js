@@ -26,7 +26,7 @@ class NewHouse extends Component {
         alert(`${this.state.title} Registered Successfully!`)
         console.log(this.state);
         event.preventDefault() 
-        const res = await fetch("http://localhost:4000/houses/create", {
+        const res = await fetch("http://localhost:4000/api/houses", {
             method: "POST",
             body: JSON.stringify(this.state),
             headers: {
