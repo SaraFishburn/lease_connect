@@ -1,8 +1,8 @@
 import React from 'react';
 import CalendarPage from "./pages/calendar_page/CalendarPage"
-import NewUser from './components/NewUser';
+import NewUser from './components/user/NewUser';
 import './global.css'
-import NewHouse from './components/NewHouse';
+import NewHouse from './components/house/NewHouse';
 
 
 function App() {
@@ -20,3 +20,4 @@ function App() {
 }
 
 export default App;
+

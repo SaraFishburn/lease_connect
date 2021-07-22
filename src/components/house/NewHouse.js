@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "./styles.css"
 
 class NewHouse extends Component {
     constructor(props) {
@@ -11,14 +12,9 @@ class NewHouse extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    titleHandler = (event) => {
+    handleChange = (event) => {
         this.setState({
-            title: event.target.value
-        })
-    }
-    addressHandler = (event) => {
-        this.setState({
-            address: event.target.value
+            [event.target.name] : event.target.value
         })
     }
     
@@ -26,7 +22,7 @@ class NewHouse extends Component {
         alert(`${this.state.title} Registered Successfully!`)
         console.log(this.state);
         event.preventDefault() 
-        const res = await fetch("http://localhost:4000/houses/create", {
+        const res = await fetch("http://localhost:4000/api/houses", {
             method: "POST",
             body: JSON.stringify(this.state),
             headers: {
@@ -43,12 +39,12 @@ class NewHouse extends Component {
 
     render() {
         return (
-            <div>
+            <div class="formDiv">
 
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create House</h1>
-                    <label>Title :</label><input type="text" value={this.state.title} onChange={this.titleHandler} placeholder="Property Title..." /><br />
-                    <label>Address :</label><input type="text" value={this.state.address} onChange={this.addressHandler} placeholder="Property Address..." /><br />
+                    <label>Title :</label><br/><input name='title' type="text" value={this.state.title} onChange={this.handleChange} placeholder="Property Title..." /><br />
+                    <label>Address :</label><br/><input name='address' type="text" value={this.state.address} onChange={this.handleChange} placeholder="Property Address..." /><br />
                     <input type="submit" value="Create House" />
                 </form>
 
