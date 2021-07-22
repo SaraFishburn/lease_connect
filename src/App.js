@@ -1,6 +1,9 @@
 import React from 'react';
+import Calendar from "./components/calendar/Calendar"
 import NewUser from './components/NewUser';
+import './global.css'
 import NewHouse from './components/NewHouse';
+
 
 function App() {
   return (
@@ -10,6 +13,8 @@ function App() {
         <NewUser/>
         <NewHouse />
       </header>
+
+      <Calendar />
     </div>
   );
 }
