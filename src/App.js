@@ -1,6 +1,7 @@
 import React from 'react';
 import Calendar from "./components/calendar/Calendar"
 import NewUser from './components/NewUser';
+import './global.css'
 
 function App() {
   return (

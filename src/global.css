@@ -3,11 +3,12 @@
 weights:
   Regular 400
   Medium 500
+  Semi-bold 600
   Bold 700
   Extra Bold 800
 
 */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
 :root {
   /* color pallette */
@@ -34,7 +35,8 @@ weights:
 
 * {
   font-family: 'Montserrat', sans-serif;
-  color: var(--dark-4);
+  font-size: 14px;
+  color: var(--dark-blue);
 }
 
 body {
