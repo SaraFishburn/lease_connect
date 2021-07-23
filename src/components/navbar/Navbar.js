@@ -1,5 +1,8 @@
 import { useState } from "react"
 import './styles.scss'
+import {
+  Link
+} from "react-router-dom";
 
 const Navbar = () => {
   const [hamburgerOn, setHamburgerOn] = useState(false)
@@ -8,9 +11,9 @@ const Navbar = () => {
   return (
     <>
       <ul className={`nav-links ${hamburgerOn ? 'nav-links-show' : ''}`}>
-        <li>My Account</li>
-        <li>My Account</li>
-        <li>My Account</li>
+        <li><Link onClick={() => setHamburgerOn(false)} to='/' >Home</Link></li>
+        <li><Link onClick={() => setHamburgerOn(false)} to='/calendar' >Calendar</Link></li>
+        <li><Link onClick={() => setHamburgerOn(false)} to='/' >My Account</Link></li>
       </ul>
       <div className="navbar">
         <div className="nav-rectangle">

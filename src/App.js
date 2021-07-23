@@ -1,30 +1,35 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from "react-router-dom";
+
 import CalendarPage from "./pages/calendar_page/CalendarPage"
-import NewUser from './components/user/NewUser';
 import Navbar from './components/navbar/Navbar';
+import Test from './pages/Test';
 import './global.css'
-import NewHouse from './components/house/NewHouse';
-import LoginForm from './components/login/LoginForm';
-import ImageUpload from './components/image/ImageUpload';
 
 
 function App() {
   return (
     <div style={{ textAlign: 'center' }}>
-      <Navbar />
-      <header>
-        <h1>Lease Connect</h1>
-        <ImageUpload />
-        <LoginForm />
-        <NewUser/>
-        <NewHouse />
-      </header>
 
-      <CalendarPage />
+      <BrowserRouter>
+        <Navbar />
 
+        <Switch>
+          <Route exact path="/">
+            <Test />
+          </Route>
+
+          <Route path="/calendar">
+            <CalendarPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-
