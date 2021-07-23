@@ -10,8 +10,8 @@ import LoginForm from './components/login/LoginForm';
 function App() {
   return (
     <div style={{ textAlign: 'center' }}>
+      <Navbar />
       <header>
-        <Navbar />
         <h1>Lease Connect</h1>
         <LoginForm />
         <NewUser/>
