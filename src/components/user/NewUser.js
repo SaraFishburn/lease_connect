@@ -76,7 +76,7 @@ class NewUser extends Component {
                     <select name='house_id' onChange={this.handleChange} defaultValue="Select Property">
                         <option defaultValue>Select Property</option>
                     {this.state.houses.map(house => (
-                        <option value={house.id}>{house.id}- {house.title}</option>
+                        <option value={house.id}>{house.title}</option>
                     ))}
                     </select><br/>
                     <input type="submit" value="Create & Email" />
