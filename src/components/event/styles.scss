@@ -1,5 +1,5 @@
 .event-tile {
-  height: 60px;
+  min-height: 60px;
   display: flex;
   border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
   border-radius: 15px;
@@ -37,6 +37,7 @@
     justify-content: space-evenly;
     text-align: left;
     margin-left: 15px;
+    padding: 5px;
 
     div {
       &:first-child {
