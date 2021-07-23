@@ -5,6 +5,7 @@ import Navbar from './components/navbar/Navbar';
 import './global.css'
 import NewHouse from './components/house/NewHouse';
 import LoginForm from './components/login/LoginForm';
+import ImageUpload from './components/image/ImageUpload';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <header>
         <h1>Lease Connect</h1>
+        <ImageUpload />
         <LoginForm />
         <NewUser/>
         <NewHouse />
