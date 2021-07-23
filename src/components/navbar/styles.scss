@@ -1,0 +1,111 @@
+.navbar {
+  height: fit-content;
+  width: fit-content;
+  filter: var(--drop-dp2);
+
+  .nav-rectangle {
+    width: 100vw;
+    background-color: white;
+    height: 60px;
+    display: flex;
+
+    /* hamburger and animation */
+    .hamburger {
+      align-self: center;
+      top: 0;
+      margin: 0px 20px 0px auto;
+    
+      position: relative;
+      height: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      opacity: 0.87;
+      z-index: 100;
+      cursor: pointer;
+    
+      .ham-top, .ham-bottom {
+        transition: 0.5s;
+        position: relative;
+        width: 30px;
+        height: 4px;
+        background-color: var(--logo-blue);
+        top: 0;
+      }
+    
+      .ham-middle {
+        transition: 0.5s;
+        position: absolute;
+        width: 15px;
+        height: 4px;
+        background-color: var(--logo-blue);
+        top: calc(50% + 1px);
+      }
+    
+      .ham-bottom {
+        position: absolute;
+        top: 100%;
+      }
+    
+      .ham-top-transition {
+        top: calc(50% - 1px) !important;
+        transform: rotate(45deg);
+        transition: 0.5s;
+      }
+      
+      .ham-middle-transition {
+        width: 0px !important;
+        transition: 0.5s;
+      }
+      
+      .ham-bottom-transition {
+        top: calc(50% - 1px) !important;
+        transform: rotate(-45deg);
+        transition: 0.5s;
+      }
+    }
+  }
+
+  .nav-circle {
+    height: 80px;
+    width: 80px;
+    background-color: white;
+    margin-left: 20px;
+    border-radius: 50%;
+  }
+
+}
+
+.nav-links {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  
+  width: 100vw;
+  height: 100vh;
+
+  padding: 0;
+  padding-top: 100px;
+  margin: auto;
+  background: linear-gradient(180deg, var(--mid-blue) 0%, var(--dark-blue) 100%);
+
+  transform: translateY(-100%);
+  transition: 0.6s;
+
+  li {
+    list-style: none;
+    margin: 20px;
+    color: white;
+    font-size: 2.3rem;
+  }
+}
+
+.nav-links-show {
+  transform: translateY(0%) !important;
+}
+
+
+
+
