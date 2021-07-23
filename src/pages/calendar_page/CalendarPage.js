@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import API from '../../helpers/api'
 import Calendar from '../../components/calendar/Calendar'
 import Event from '../../components/event/Event'
 import Dayjs from 'dayjs'
@@ -10,9 +11,8 @@ const CalendarPage = () => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}events`)
-    .then(res => res.json())
-    .then(data => setEvents(data))
+    API.request('events')
+    .then(res => setEvents(res.data))
   }, [])
 
   function formattedEvents(events) {

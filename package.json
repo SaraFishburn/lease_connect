@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.21.1",
     "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
     "node-sass": "^6.0.1",
