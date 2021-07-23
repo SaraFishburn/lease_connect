@@ -12,6 +12,8 @@ weights:
 
 :root {
   /* color pallette */
+
+  /* main values for normal use  */
   --button-green: #00853E;  /* must be used with bold white text to meet accessibility guidelines */
   --logo-green: #8DC63F;
   --logo-blue: #27AAE1;
@@ -20,17 +22,29 @@ weights:
   --error-red: #E40707;  /* must be used with bold white text to meet accessibility guidelines */
   --pending-yellow: #FAAD14;
   --off-white: #F7F7F7;
-
-
+  
+  /* rgb values for custom opacity */
+  --button-green-rgb: 0, 133, 62;
+  --logo-green-rgb: 141, 198, 63;
+  --logo-blue-rgb: 39, 170, 225;
+  --mid-blue-rgb: 42, 43, 119;
+  --dark-blue-rgb: 22, 29, 41;
+  --error-red-rgb: 228, 7, 7, 1;
+  --pending-yellow-rgb: 250, 173, 20;
+  --off-white-rgb: 247, 247, 247;
+  
   /* material design box shadows */
   /* normal */
   --dp4: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.20);
-
   /* hover */
   --dp8: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.20);
-
   /* active */
   --dp12: 0 12px 17px 2px rgba(0,0,0,0.14), 0 5px 22px 4px rgba(0,0,0,0.12), 0 7px 8px -4px rgba(0,0,0,0.20);
+
+  /* material design drop shadow */
+  --drop-dp2: drop-shadow(0 2px 2px rgba(0,0,0,0.14)) drop-shadow(0 3px 1px rgba(0,0,0,0.12)) drop-shadow(0 1px 5px rgba(0,0,0,0.20));
+
+  --drop-dp4: drop-shadow(0 4px 5px rgba(0,0,0,0.14)) drop-shadow(0 1px 10px rgba(0,0,0,0.12)) drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 * {

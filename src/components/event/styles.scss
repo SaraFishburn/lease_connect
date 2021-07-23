@@ -1,0 +1,54 @@
+.event-tile {
+  min-height: 60px;
+  display: flex;
+  border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+  border-radius: 15px;
+  box-shadow: var(--dp4);
+  margin: 10px 0px;
+
+  .event-date {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 65px;
+
+    div {
+      font-size: 18px;;
+    }
+  
+  }
+
+  .maintenance {
+    border-right: 5px solid var(--logo-blue);
+  }
+
+  .inspection {
+    border-right: 5px solid var(--error-red);
+  }
+  
+  .lease {
+    border-right: 5px solid var(--logo-green);
+  }
+
+  .event-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    margin-left: 15px;
+    padding: 5px;
+
+    div {
+      &:first-child {
+        font-size: 18px;
+      }
+  
+      &:last-child {
+        font-size: 14px;
+      }
+    }
+
+
+  }
+}
