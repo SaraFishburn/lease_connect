@@ -1285,10 +1285,10 @@
   resolved "https://registry.yarnpkg.com/@iconify-icons/akar-icons/-/akar-icons-1.1.17.tgz#f765416ec8429f7d9cb3f9d7bf7df81a5f2250cc"
   integrity sha512-HfmMly/+CN8Phcjz+5nhCGeyYooIymfcLI1NM14yr6EmVkT8vrtLtJMxgTWWRr7RDcxFGMRoy26rNdVrfXw2uA==
 
-"@iconify-icons/fluent@^1.1.22":
-  version "1.1.22"
-  resolved "https://registry.yarnpkg.com/@iconify-icons/fluent/-/fluent-1.1.22.tgz#6c3c7e227bd8172facaf111e2119b355fe4b3542"
-  integrity sha512-LiUm88HXWbowvnRmPfcx9KIFTExEDrfmg+PS99+/Dd2fJN8TZVmbvZZb5K7ru/lOuwAsEXMZfbYlKmlv/utVVg==
+"@iconify-icons/bx@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@iconify-icons/bx/-/bx-1.1.1.tgz#51a4c34afbfc7dafe359f9a02d82376dd8810707"
+  integrity sha512-OYsYFkTyNk1erPoqnNLmwBaKTdTdBf0xRgfk6JIVxXmcdQg0MKnkkdZu4xu3G9oCIJHDvX38N6nahxA8l+QTOQ==
 
 "@iconify-icons/ic@^1.1.7":
   version "1.1.7"

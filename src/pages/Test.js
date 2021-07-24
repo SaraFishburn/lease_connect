@@ -12,23 +12,18 @@ export default function Test() {
     <div>
       <h1>Lease Connect</h1>
       <ImageUpload />
-      <LoginForm />
       <NewUser/>
       <NewHouse />
       <ImageUpload />
-      <LoginForm />
       <NewUser/>
       <NewHouse />
       <ImageUpload />
-      <LoginForm />
       <NewUser/>
       <NewHouse />
       <ImageUpload />
-      <LoginForm />
       <NewUser/>
       <NewHouse />
       <ImageUpload />
-      <LoginForm />
       <NewUser/>
       <NewHouse />
       <NewDocument />

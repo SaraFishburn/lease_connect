@@ -1,3 +1,5 @@
+// allows a user to access a route only if they're logged in 
+
 import {
   Route,
   Redirect

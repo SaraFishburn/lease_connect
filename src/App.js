@@ -1,24 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter,
   Switch,
   Route
 } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 import CalendarPage from "./pages/calendar_page/CalendarPage"
 import LoginPage from "./pages/login_page/LoginPage"
+import CreateAccountPage from './pages/create_account_page/CreateAccountPage';
 import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
 
 
 function App() {
+
+  function userLoggedIn() {
+    return Boolean(localStorage.getItem('authToken'))
+  }
+
+  const [user, setUser] = useState(userLoggedIn())
+
   return (
     <>
-      <div className='background-circles'></div>
+      <div className={`background-circles ${!user ? 'login-circle' : ''}`}></div>
       <BrowserRouter>
-        <Navbar />
+
+        {user && (
+          <Navbar />
+        )}
 
         <Switch>
           <Route exact path="/">
@@ -29,9 +41,13 @@ function App() {
             <CalendarPage />
           </PrivateRoute>
 
-          <Route path="/login">
-            <LoginPage />
-          </Route>
+          <PrivateRoute path="/create_account">
+            <CreateAccountPage />
+          </PrivateRoute>
+
+          <PublicRoute path="/login">
+            <LoginPage setUser={setUser} />
+          </PublicRoute>
         </Switch>
       </BrowserRouter>
     </>
