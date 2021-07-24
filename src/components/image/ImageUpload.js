@@ -13,6 +13,7 @@ const ImageUpload = (props) => {
     const inputRef = useRef()
 
     useEffect(() => {
+        console.log(image)
         if(image === "") {
             return
         }
@@ -53,7 +54,9 @@ const ImageUpload = (props) => {
                         class="image-upload-input" 
                         type="file" 
                         onChange={(e)=> {
-                            setImage(e.target.files[0])
+                            e.target.files[0] != undefined && (
+                                setImage(e.target.files[0])
+                            )
                             console.log('changed image')
                         }}>
                     </input>

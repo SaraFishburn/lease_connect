@@ -38,6 +38,24 @@
 
         border-radius: 10px;
         opacity: 0;
+
+        .image-icon {
+            font-size: 70px;
+            pointer-events: none;
+        }
+        
+        .image-upload-input {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+    
+        }
+    
+        span {
+            position: absolute;
+            bottom: 10px;
+            opacity: 0.8;
+        }
     }
 
     .image-preview {
@@ -52,7 +70,7 @@
         overflow: hidden;
         border-radius: 10px;
     }
-    
+
     .preview-background {
         background-color: var(--logo-blue);
     }
@@ -72,7 +90,7 @@
         border-radius: 50%;
         background-color: white;
 
-        cursor: pointer;
+        pointer-events: none;
 
         .edit-icon {
             font-size: 24px;
@@ -83,23 +101,5 @@
 .upload-mode {
     opacity: 1 !important;
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%23333' stroke-width='1' stroke-dasharray='10%2c 5' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
-
-    .image-icon {
-        font-size: 70px;
-        pointer-events: none;
-    }
-    
-    .image-upload-input {
-        opacity: 0;
-        position: absolute;
-        pointer-events: none;
-
-    }
-
-    span {
-        position: absolute;
-        bottom: 10px;
-        opacity: 0.8;
-    }
 }
 
