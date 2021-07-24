@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import ImageUpload from '../image/ImageUpload'
 import "./styles.css"
 
-
 function NewHouse(props) {
     const [uploadImage, setUploadImage] = useState(() => () => {})
 
