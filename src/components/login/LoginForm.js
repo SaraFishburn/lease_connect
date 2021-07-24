@@ -6,7 +6,7 @@ import {
 import API from '../../helpers/api'
 import './styles.scss'
 
-function LoginForm() {
+function LoginForm(props) {
     const defaultFormValues = {
         email: "",
         password: "",
@@ -33,6 +33,7 @@ function LoginForm() {
             },
         })
         .then(res => {
+            props.setUser(true)
             history.push("/")
         })
     }
