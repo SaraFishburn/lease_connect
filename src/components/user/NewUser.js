@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './styles.scss'
 
 function NewUser() {
     const defaultFormValues = {
@@ -6,7 +7,7 @@ function NewUser() {
         email: "",
         password: "",
         phone_number: "",
-        role_name: "",
+        role_name: "Tenant",
         house_id: "",
         houses: [],
     }
@@ -52,23 +53,31 @@ function NewUser() {
         <div class="formDiv">
             <form onSubmit={handleSubmit}>
                 <h1>Create Account</h1>
-                <label>Role :</label><br/>
-                <select name='role_name' onChange={handleChange} defaultValue="Select Role">
-                    <option defaultValue>Select Role</option>
-                    <option value="Tenant">Tenant</option>
-                    <option value="Property Manager">Property Manager</option>
-                </select><br/>
-                <label>Name :</label><br/><input name='name' type="text" value={formValues.name} onChange={handleChange} placeholder="Name..." /><br />
-                <label>Email :</label><br/><input name='email' type="text" value={formValues.email} onChange={handleChange} placeholder="Email..." /><br />
-                <label>Temporary Password :</label><br/><input name='password' type="text" value={formValues.password} onChange={handleChange} placeholder="Password..." /><br />
-                <label>Phone :</label><br/><input name='phone_number' type="text" value={formValues.phone_number} onChange={handleChange} placeholder="Phone Number..." /><br />
-                <label>Property :</label><br/>
-                <select name='house_id' value={formValues.house_id} onChange={handleChange} defaultValue="Select Property">
-                    <option defaultValue>Select Property</option>
+                <label>Role :</label>
+                <div className="radio-buttons" name='role_name' onChange={handleChange} defaultValue="Select Role">
+                    <label htmlFor="tenant_radio_button">
+                        <input id="tenant_radio_button" name='role_name' type="radio" value="Tenant" checked={formValues.role_name === "Tenant"} onChange={handleChange}/>
+                        <div className="custom-radio">
+                            <div className="selected-fill"></div>
+                        </div> Tenant
+                    </label>
+                    <label htmlFor="pm_radio_button">
+                        <input id="pm_radio_button" name='role_name' type="radio" value="Property Manager" checked={formValues.role_name === "Property Manager"} onChange={handleChange} />
+                        <div className="custom-radio">
+                            <div className="selected-fill"></div>
+                        </div> PM
+                    </label>
+                </div>
+                <label>Name :</label><input name='name' type="text" value={formValues.name} onChange={handleChange} />
+                <label>Email :</label><input name='email' type="text" value={formValues.email} onChange={handleChange} />
+                <label>Temp Password :</label><input name='password' type="text" value={formValues.password} onChange={handleChange} />
+                <label>Phone :</label><input name='phone_number' type="text" value={formValues.phone_number} onChange={handleChange} />
+                <select name='house_id' value={formValues.house_id} onChange={handleChange}>
+                    <option value='' disabled selected>Select Property</option>
                     {formValues.houses.map(house => (
                         <option value={house.id}>{house.title}</option>
                     ))}
-                </select><br/>
+                </select>
                 <input type="submit" value="Create & Email" />
             </form>
         </div>
