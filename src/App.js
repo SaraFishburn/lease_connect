@@ -10,6 +10,7 @@ import PublicRoute from './components/PublicRoute';
 import CalendarPage from "./pages/calendar_page/CalendarPage"
 import LoginPage from "./pages/login_page/LoginPage"
 import CreateAccountPage from './pages/create_account_page/CreateAccountPage';
+import CreatePropertyPage from './pages/create_property_page/CreatePropertyPage'
 import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
@@ -43,6 +44,10 @@ function App() {
 
           <PrivateRoute path="/create_account">
             <CreateAccountPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/create_property">
+            <CreatePropertyPage />
           </PrivateRoute>
 
           <PublicRoute path="/login">

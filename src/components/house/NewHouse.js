@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ImageUpload from '../image/ImageUpload'
-import "./styles.css"
+import "./styles.scss"
 
 function NewHouse(props) {
     const [uploadImage, setUploadImage] = useState(() => () => {})
@@ -40,9 +40,9 @@ function NewHouse(props) {
     return (
         <div class="formDiv">
             <form onSubmit={handleSubmit}>
-            <h1>Create House</h1>
-                <label>Title :</label><br/><input name='title' type="text" value={formValues.title} onChange={handleChange} placeholder="Property Title..." /><br />
-                <label>Address :</label><br/><input name='address' type="text" value={formValues.address} onChange={handleChange} placeholder="Property Address..." /><br />
+            <h1>Create Property</h1>
+                <label>Title :</label><input name='title' type="text" value={formValues.title} onChange={handleChange} placeholder="Property Title..." /><br />
+                <label>Address :</label><input name='address' type="text" value={formValues.address} onChange={handleChange} placeholder="Property Address..." /><br />
                 <ImageUpload setUploadImage={setUploadImage}/>
                 <input type="submit" value="Create House" />
             </form>

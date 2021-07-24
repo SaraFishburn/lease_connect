@@ -14,6 +14,7 @@ const Navbar = () => {
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/' >HOME</Link></li>
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/calendar' >CALENDAR</Link></li>
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_account' >CREATE ACCOUNT</Link></li>
+        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_property' >CREATE PROPERTY</Link></li>
       </ul>
       <div className="navbar">
         <div className="nav-rectangle">
