@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import {
+    useHistory
+} from "react-router-dom";
+
+import API from '../../helpers/api'
+import './styles.scss'
 
 function LoginForm() {
     const defaultFormValues = {
@@ -6,6 +12,7 @@ function LoginForm() {
         password: "",
     }
 
+    const history = useHistory()
     const [formValues, setFormValues] = useState(defaultFormValues);
 
     const handleChange = (e) => {
@@ -16,24 +23,26 @@ function LoginForm() {
     }
 
     const handleSubmit = async (event) => {
-        event.preventDefault() 
-        const res = await fetch("http://localhost:4000/api/sessions/sign_in", {
+        event.preventDefault()
+
+        const res = API.request("sessions/sign_in", {
             method: "POST",
-            body: JSON.stringify(formValues),
+            data: formValues,
             headers: {
                 "Content-Type": "application/json",
             },
-        });
-        setFormValues(defaultFormValues)  
+        })
+        .then(res => {
+            history.push("/")
+        })
     }
 
     return (
         <div class="formDiv">
             <form onSubmit={handleSubmit}>
-                <h1>Login</h1>
-                <label>Email :</label><br/><input name='email' type="text" value={formValues.email} onChange={handleChange} placeholder="Email..." /><br />
-                <label>Password :</label><br/><input name='password' type="text" value={formValues.password} onChange={handleChange} placeholder="Password..." /><br />
-                <input type="submit" value="Login" />
+                <label>Email :</label><input name='email' type="text" value={formValues.email} onChange={handleChange} />
+                <label>Password :</label><input name='password' type="password" value={formValues.password} onChange={handleChange} />
+                <input type="submit" value="LOGIN" />
             </form>
         </div>
     )

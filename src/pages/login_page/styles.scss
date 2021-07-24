@@ -1,0 +1,17 @@
+.background-circles {
+  background-color: var(--dark-blue) !important;
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 200px;
+
+  img {
+    width: calc(250px + 10vw);
+
+    transform: translateX(-15px);
+  }
+}

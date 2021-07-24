@@ -6,12 +6,28 @@ import NewUser from '../components/user/NewUser';
 
 export default function Test() {
   return (
-    <header>
+    <div>
       <h1>Lease Connect</h1>
       <ImageUpload />
       <LoginForm />
       <NewUser/>
       <NewHouse />
-    </header>
+      <ImageUpload />
+      <LoginForm />
+      <NewUser/>
+      <NewHouse />
+      <ImageUpload />
+      <LoginForm />
+      <NewUser/>
+      <NewHouse />
+      <ImageUpload />
+      <LoginForm />
+      <NewUser/>
+      <NewHouse />
+      <ImageUpload />
+      <LoginForm />
+      <NewUser/>
+      <NewHouse />
+    </div>
   )
 }

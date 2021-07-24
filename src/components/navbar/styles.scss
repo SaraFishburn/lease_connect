@@ -4,6 +4,7 @@
   filter: var(--drop-dp2);
   position: fixed;
   top: 0;
+  z-index: 2;
 
   .nav-rectangle {
     width: 100vw;
@@ -75,12 +76,18 @@
     background-color: white;
     margin-left: 20px;
     border-radius: 50%;
+
+    img {
+      height: 70px;
+      width: 70px;
+      padding-top: 5px;
+    }
   }
 
 }
 
 .nav-links {
-  position: fixed;
+  position: absolute;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -91,16 +98,27 @@
   padding: 0;
   padding-top: 100px;
   margin: auto;
-  background: linear-gradient(180deg, var(--mid-blue) 0%, var(--dark-blue) 100%);
+  background: linear-gradient(150deg, var(--dark-blue) 0%, var(--mid-blue) 100%);
 
   transform: translateY(-100%);
   transition: 0.6s;
 
+  z-index: 1;
+
   li {
     list-style: none;
     margin: 20px;
-    color: white;
-    font-size: 2.3rem;
+
+    .link {
+      color: white;
+      font-size:calc(2rem + 4vw);
+      text-decoration: none;
+
+      &:hover {
+        color: var(--logo-blue);
+        text-decoration: underline;
+      }
+    }
   }
 }
 
