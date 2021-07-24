@@ -38,4 +38,4 @@ export default API
 // HOW TO USE
 // import API from '../../helpers/api'
 
-// API.request('/events', { body: {event_type: 'inspection', datetime: '2021-07-30 13:00'} })
+// API.request('/events', { data: {event_type: 'inspection', datetime: '2021-07-30 13:00'} })
