@@ -1,55 +1,56 @@
-import React, { useState } from 'react'
-import ImageUpload from '../image/ImageUpload'
-import "./styles.css"
+import React, { Component } from 'react'
 
+class NewHouse extends Component {
+    constructor(props) {
+        super(props)
 
-function NewHouse() {
-
-    const defaultFormValues = {
-        title: "",
-        address: "",
-        image_url: "",
+        this.state = {
+            title: "",
+            address: "",
+        }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    const [formValues, setFormValues] = useState(defaultFormValues);
-
-    const setUrl = (newUrl) => {
-        setFormValues({
-            ...formValues,
-            image_url: newUrl
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name] : event.target.value
         })
     }
-
-    const handleChange = (e) => {
-        setFormValues({
-            ...formValues,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmit = async (event) => {
+    
+    handleSubmit = async (event) => {
+        alert(`${this.state.title} Registered Successfully!`)
+        console.log(this.state);
         event.preventDefault() 
         const res = await fetch("http://localhost:4000/api/houses", {
             method: "POST",
-            body: JSON.stringify(formValues),
+            body: JSON.stringify(this.state),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": ``,
             },
-        });
-        setFormValues(defaultFormValues)  
+        });  
+        console.log(this.state);
+        this.setState({
+            title: "",
+            address: "",
+        })
     }
 
-    return (
-        <div class="formDiv">
-            <form onSubmit={handleSubmit}>
-            <h1>Create House</h1>
-                <label>Title :</label><br/><input name='title' type="text" value={formValues.title} onChange={handleChange} placeholder="Property Title..." /><br />
-                <label>Address :</label><br/><input name='address' type="text" value={formValues.address} onChange={handleChange} placeholder="Property Address..." /><br />
-                < ImageUpload url={formValues.image_url} setUrl={setUrl} />
-                <input type="submit" value="Create House" />
-            </form>
-        </div>
-    )
+    render() {
+        return (
+            <div class="formDiv">
+
+                <form onSubmit={this.handleSubmit}>
+                    <h1>Create House</h1>
+                    <label>Title :</label><br/><input name='title' type="text" value={this.state.title} onChange={this.handleChange} placeholder="Property Title..." /><br />
+                    <label>Address :</label><br/><input name='address' type="text" value={this.state.address} onChange={this.handleChange} placeholder="Property Address..." /><br />
+                    <input type="submit" value="Create House" />
+                </form>
+
+            </div>
+            
+        )
+    }
 }
 
 export default NewHouse
