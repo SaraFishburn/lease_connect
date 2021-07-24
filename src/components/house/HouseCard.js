@@ -5,35 +5,22 @@ import { Icon } from '@iconify/react';
 import delete24Regular from '@iconify-icons/fluent/delete-24-regular';
 import editIcon from '@iconify-icons/akar-icons/edit';
 
-export default function HouseCard() {
-    const [data, setData] = useState({houses: []})
-
-    useEffect(() => {
-        fetch('http://localhost:4000/api/houses')
-            .then (results => results.json())
-            .then (results => setData({
-                ...data,
-                houses: results
-            }))
-    }, [])
+export default function HouseCard(props) {
+    console.log(props)
      
     return (
-        <>
-        {data.houses.map(house => (
-        <div class="houseCard">
-            <div class="cardContent">
-                <h1>{house.title}</h1>
-                <div class="cardMiddle">
-                    <img src={house.image_url} width="100px"/>
-                    <p>{house.address}</p>
-                </div>
-                <div class="cardIcons">
-                    <Icon icon={delete24Regular} />
-                    <Icon icon={editIcon} />  
-                </div> 
-            </div>     
-        </div>
-        ))}
-        </>
+    <div class="house-card">
+        <div class="card-content">
+            <h1>{props.title}</h1>
+            <div class="card-middle">
+                <img src={props.image_url} width="100px"/>
+                <p>{props.address}</p>
+            </div>
+        </div>     
+        <div class="card-icons">
+            <Icon icon={delete24Regular} />
+            <Icon icon={editIcon} />  
+        </div> 
+    </div>
     )
 }

@@ -51,3 +51,48 @@
     }
   }
 }
+
+.user-card {
+  position: relative;
+
+  height: 80px;
+  width: 250px;
+  padding: 10px;
+  margin: 10px;
+
+  background-color: white;
+  border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+  border-radius: 15px;
+  box-shadow: var(--dp4);
+
+  text-align: left;
+
+  .card-content {
+    h1 {
+      margin: 2px 0;
+      font-size: 18px;
+    }
+
+    .card-middle {
+      p {
+        margin: 2px 0;
+      }
+    }
+  }
+  .card-icons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px 10px;
+
+    .delete-icons {
+      position: relative;
+
+      .delete {
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+  }
+
+}

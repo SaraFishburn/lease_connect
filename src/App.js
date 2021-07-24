@@ -14,6 +14,7 @@ import CreatePropertyPage from './pages/create_property_page/CreatePropertyPage'
 import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
+import AdminHomePage from './pages/admin_home_page/AdminHomePage';
 
 
 function App() {
@@ -48,6 +49,10 @@ function App() {
 
           <PrivateRoute path="/create_property">
             <CreatePropertyPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/admin_home">
+            <AdminHomePage />
           </PrivateRoute>
 
           <PublicRoute path="/login">
