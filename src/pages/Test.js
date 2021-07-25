@@ -13,7 +13,6 @@ export default function Test() {
       <h1>Lease Connect</h1>
       <ImageUpload />
       <NewUser/>
-      <NewHouse />
       <NewDocument />
       <HouseCard />
       <UserCard />
