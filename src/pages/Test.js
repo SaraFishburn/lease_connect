@@ -14,18 +14,6 @@ export default function Test() {
       <ImageUpload />
       <NewUser/>
       <NewHouse />
-      <ImageUpload />
-      <NewUser/>
-      <NewHouse />
-      <ImageUpload />
-      <NewUser/>
-      <NewHouse />
-      <ImageUpload />
-      <NewUser/>
-      <NewHouse />
-      <ImageUpload />
-      <NewUser/>
-      <NewHouse />
       <NewDocument />
       <HouseCard />
       <UserCard />

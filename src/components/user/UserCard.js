@@ -1,37 +1,62 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 
 import { Icon } from '@iconify/react';
 import delete24Regular from '@iconify-icons/fluent/delete-24-regular';
-import editIcon from '@iconify-icons/akar-icons/edit';
 
-export default function UserCard() {
-    const [data, setData] = useState({users: []})
+import './styles.scss'
 
-    useEffect(() => {
-        fetch('http://localhost:4000/api/users')
-            .then (results => results.json())
-            .then (results => setData({
-                ...data,
-                users: results
-            }))
-    }, [])
-     
+export default function UserCard(props) {
+
+    const [hover, setHover] = useState(false)
+
     return (
-        <>
-        {data.users.map(user => (
-        <div class="houseCard">
-            <div class="cardContent">
-                <h1>{user.name}</h1>
-                <div class="cardMiddle">
-                    <p>{user.email}</p>
-                    <p>{user.phone_number}</p>
+        <div class="user-card">
+            <div class="card-content">
+                <h1>{props.name}</h1>
+                <div class="card-middle">
+                    <p>{props.email}</p>
+                    <p>{props.phone_number}</p>
                 </div>
-                <div class="cardIcons">
-                    <Icon icon={delete24Regular} className="image-icon" color="#E40707" width='2em'/>
-                </div> 
             </div>     
+            <div
+              class="card-icons"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}> 
+              {
+                hover ?
+                <Icon
+                    className="delete-icon-white" 
+                    icon={delete24Regular} 
+                    color="#FFFFFF"/>
+                :
+                <Icon
+                    className="delete-icon" 
+                    icon={delete24Regular} 
+                    color="#2A2B77"/>
+
+              }
+            </div> 
         </div>
-        ))}
-        </>
+  
     )
 }
+
+// var Link = React.createClass({
+//     getInitialState: function(){
+//       return {hover: false}
+//     },
+//     toggleHover: function(){
+//       this.setState({hover: !this.state.hover})
+//     },
+//     render: function() {
+//       var linkStyle;
+//       if (this.state.hover) {
+//         linkStyle = {backgroundColor: 'red'}
+//       } else {
+//         linkStyle = {backgroundColor: 'blue'}
+//       }
+//       return(
+//         <div>
+//           <a style={linkStyle} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Link</a>
+//         </div>
+//       )
