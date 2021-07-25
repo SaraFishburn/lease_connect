@@ -69,7 +69,7 @@
 
   .card-content {
     h1 {
-      margin: 2px 0;
+      margin: 2px 0 10px 0;
       font-size: 18px;
     }
 
@@ -83,15 +83,19 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 5px 10px;
+    padding-right: 5px;
 
-    .delete-icons {
-      position: relative;
+    .delete-icon {
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px;
+    }
 
-      .delete {
-        font-size: 24px;
-        cursor: pointer;
-      }
+    .delete-icon-white {
+      @extend .delete-icon;
+      border-radius: 50%;
+      background-color: var(--mid-blue);
+
     }
   }
 

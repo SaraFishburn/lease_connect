@@ -3,9 +3,13 @@ import "./styles.scss"
 
 import { Icon } from '@iconify/react';
 import delete24Regular from '@iconify-icons/fluent/delete-24-regular';
-import editIcon from '@iconify-icons/akar-icons/edit';
+import noteEditLine from '@iconify-icons/clarity/note-edit-line';
+import bxImageAlt from '@iconify-icons/bx/bx-image-alt';
 
 export default function HouseCard(props) {
+    const [editHover, setEditHover] = useState()
+    const [deleteHover, setDeleteHover] = useState()
+
     console.log(props)
      
     return (
@@ -13,13 +17,36 @@ export default function HouseCard(props) {
         <div class="card-content">
             <h1>{props.title}</h1>
             <div class="card-middle">
-                <img src={props.image_url} width="100px"/>
+                <div className='img-frame'>
+                    <Icon icon={bxImageAlt} className="img-placeholder" color="#2A2B77" />
+                    <img src={props.image_url} height="150px"/>
+                </div>
                 <p>{props.address}</p>
             </div>
         </div>     
         <div class="card-icons">
-            <Icon icon={delete24Regular} />
-            <Icon icon={editIcon} />  
+            <div 
+                className="edit-icon-div"
+                onMouseEnter={() => setEditHover(true)}
+                onMouseLeave={() => setEditHover(false)}>
+                    {
+                        editHover ? 
+                        <Icon icon={noteEditLine} className="icon-white" color="#FFFFFF" /> 
+                        :    
+                        <Icon icon={noteEditLine} className="icon" color="#2A2B77" /> 
+                    }
+            </div>
+            <div Update
+                className="delete-icon-div"
+                onMouseEnter={() => setDeleteHover(true)}
+                onMouseLeave={() => setDeleteHover(false)}>
+                    {
+                        deleteHover ? 
+                        <Icon icon={delete24Regular} className="icon-white" color="#FFFFFF" />
+                        :    
+                        <Icon icon={delete24Regular} className="icon" color="#2A2B77" />
+                    } 
+            </div>
         </div> 
     </div>
     )

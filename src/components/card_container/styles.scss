@@ -11,6 +11,7 @@
   background-color: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
   border-radius: 15px;
+  box-sizing: border-box;
 
   margin: auto;
   margin-top: 45px;
@@ -20,6 +21,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1;
     font-size: 18px;
     font-weight: 600;
     text-align: left;
@@ -51,5 +53,6 @@
 .collapse {
   min-height: 45px !important;
   height: 45px !important;
+  padding: 0px;
   overflow: hidden;
 }
