@@ -15,6 +15,7 @@ import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
 import AdminHomePage from './pages/admin_home_page/AdminHomePage';
+import UpdatePropertyPage from './pages/update_property_page/UpdatePropertyPage';
 
 
 function App() {
@@ -53,6 +54,10 @@ function App() {
 
           <PrivateRoute path="/admin_home">
             <AdminHomePage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/houses/edit/:id">
+            <UpdatePropertyPage />
           </PrivateRoute>
 
           <PublicRoute path="/login">

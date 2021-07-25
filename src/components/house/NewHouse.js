@@ -6,11 +6,28 @@ function NewHouse(props) {
     return (
         <div class="formDiv">
             <form onSubmit={props.handleSubmit}>
-            <h1>Create Property</h1>
-                <label>Title :</label><input name='title' type="text" value={props.formValues.title} onChange={props.handleChange} placeholder="Property Title..." /><br />
-                <label>Address :</label><input name='address' type="text" value={props.formValues.address} onChange={props.handleChange} placeholder="Property Address..." /><br />
+            <h1>{`${props.action}`}</h1>
+                <label>Title :</label>
+                <input 
+                    name='title' 
+                    type="text" 
+                    value={props.formValues.title} 
+                    onChange={props.handleChange} 
+                    placeholder={`${props.formValues.title != "" ? `${props.formValues.title}` : ""}`}/>
+
+                <label>Address :</label>
+                <input 
+                    name='address' 
+                    type="text" 
+                    value={props.formValues.address} 
+                    onChange={props.handleChange} 
+                    placeholder={`${props.formValues.address != "" ? `${props.formValues.address}` : ""}`} />
+
                 <ImageUpload setUploadImage={props.setUploadImage}/>
-                <input type="submit" value="Create Property" />
+
+                {props.children}
+                <input type="submit" value={`${props.action}`} />
+
             </form>
         </div>
     )
