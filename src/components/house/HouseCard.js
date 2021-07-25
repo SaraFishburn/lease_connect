@@ -7,6 +7,7 @@ import editIcon from '@iconify-icons/akar-icons/edit';
 
 export default function HouseCard() {
     const [data, setData] = useState({houses: []})
+    const [id, setId] = useState('')
 
     useEffect(() => {
         fetch('http://localhost:4000/api/houses')
@@ -16,7 +17,12 @@ export default function HouseCard() {
                 houses: results
             }))
     }, [])
-     
+
+
+    // function deleteHouse() {
+    //     fetch(`http://localhost:4000/api/houses/${house_id}`, { method: 'DELETE' })        
+    // }
+  
     return (
         <>
         {data.houses.map(house => (
@@ -28,8 +34,8 @@ export default function HouseCard() {
                     <p>{house.address}</p>
                 </div>
                 <div class="cardIcons">
-                    <Icon icon={delete24Regular} />
-                    <Icon icon={editIcon} />  
+                    <Icon icon={editIcon} className="image-icon" color="#2A2B77" width='2em'/>
+                    <Icon icon={delete24Regular} className="image-icon" color="#E40707"  width='2em'/>
                 </div> 
             </div>     
         </div>

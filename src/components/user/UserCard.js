@@ -27,7 +27,7 @@ export default function UserCard() {
                     <p>{user.phone_number}</p>
                 </div>
                 <div class="cardIcons">
-                    <Icon icon={delete24Regular} />
+                    <Icon icon={delete24Regular} className="image-icon" color="#E40707" width='2em'/>
                 </div> 
             </div>     
         </div>
