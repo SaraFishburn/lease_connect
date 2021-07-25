@@ -3,6 +3,8 @@ import "./styles.scss"
 
 function NewHouse(props) {
 
+    console.log(props.url)
+
     return (
         <div class="formDiv">
             <form onSubmit={props.handleSubmit}>
@@ -19,11 +21,11 @@ function NewHouse(props) {
                 <input 
                     name='address' 
                     type="text" 
-                    value={props.formValues.address} 
+                    value={props.formValues.address}
                     onChange={props.handleChange} 
                     placeholder={`${props.formValues.address != "" ? `${props.formValues.address}` : ""}`} />
 
-                <ImageUpload setUploadImage={props.setUploadImage}/>
+                <ImageUpload setUploadImage={props.setUploadImage} url={props.url}/>
 
                 {props.children}
                 <input type="submit" value={`${props.action}`} />

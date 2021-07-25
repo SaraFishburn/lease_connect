@@ -22,19 +22,11 @@ export default function UserCard(props) {
               class="card-icons"
               onMouseEnter={() => setHover(true)}
               onMouseLeave={() => setHover(false)}> 
-              {
-                hover ?
-                <Icon
-                    className="delete-icon-white" 
-                    icon={delete24Regular} 
-                    color="#FFFFFF"/>
-                :
-                <Icon
-                    className="delete-icon" 
-                    icon={delete24Regular} 
-                    color="#2A2B77"/>
-
-              }
+              <Icon
+                onClick={() => props.onDelete ? props.onDelete(props.id) : () => {}}
+                className={`delete-icon${hover ? '-white' : ''}`}
+                icon={delete24Regular} 
+                color={hover ? "#FFFFFF" : "#2A2B77"} />
             </div> 
         </div>
   

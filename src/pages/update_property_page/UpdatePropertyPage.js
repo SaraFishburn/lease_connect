@@ -13,8 +13,12 @@ const UpdatePropertyPage = () => {
   const [uploadImage, setUploadImage] = useState(() => () => {})
   let { id } = useParams()
 
-  const [houseData, setHouseData] = useState()
-  const [formValues, setFormValues] = useState({});
+  const [houseData, setHouseData] = useState({
+    property: {},
+    tenants: []
+  })
+  const [formValues, setFormValues] = useState({})
+  const [possibleTenants, setPossibleTenants] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/houses/${id}`)
@@ -25,14 +29,19 @@ const UpdatePropertyPage = () => {
   useEffect(() => {
     if(!houseData) return
 
-    console.log(houseData)
-
     setFormValues({
       title: houseData.property.title,
       address: houseData.property.address,
-      image_url: houseData.property.image_url
+      image_url: houseData.property.image_url,
+      tenants: houseData.tenants.map(tenant => tenant.id)
     })
   }, [houseData])
+
+  useEffect(() => {
+    fetch('http://localhost:4000/api/users')
+    .then (res => res.json())
+    .then (data => setPossibleTenants(data))
+  }, [])
 
   const handleChange = (e) => {
       setFormValues({
@@ -44,10 +53,11 @@ const UpdatePropertyPage = () => {
   const handleSubmit = (event) => {
       event.preventDefault()
 
+      console.log(houseData.property.image_url)
       uploadImage()
       .then(url => {
-          fetch("http://localhost:4000/api/houses", {
-              method: "POST",
+          fetch(`http://localhost:4000/api/houses/${id}`, {
+              method: "PATCH",
               body: JSON.stringify({...formValues, image_url: url}),
               headers: {
                   "Content-Type": "application/json",
@@ -55,11 +65,43 @@ const UpdatePropertyPage = () => {
           })
       })
       .catch(err => console.log(err))
-      setFormValues({
-        title: "",
-        address: "",
-        image_url: ""
-      })
+  }
+
+  function addTenant(e) {
+    const tenant = possibleTenants.find(tenant => tenant.id == e.currentTarget.value)
+
+    setHouseData({
+      property: houseData.property,
+      tenants: [...houseData.tenants, tenant]
+    })
+    setFormValues({
+      ...formValues,
+      tenants: [...formValues.tenants, e.currentTarget.value]
+    })
+  }
+
+  function calculatedPossibleTenants() {
+    const houseTenantIds = houseData.tenants.map(tenant => tenant.id)
+    return possibleTenants.filter(tenant => !houseTenantIds.includes(tenant.id))
+  }
+
+  function deleteUser(id) {
+
+    if (!window.confirm('Are you sure?')) {
+      return
+    }
+    const index = houseData.tenants.findIndex(tenant => tenant.id == id)
+    
+    const tenants = [...houseData.tenants.slice(0, index), ...houseData.tenants.slice(index + 1)]
+
+    setHouseData({
+      property: houseData.property,
+      tenants: tenants
+    })
+    setFormValues({
+      ...formValues,
+      tenants: tenants.map(t => t.id)
+    })
   }
 
   return (
@@ -69,14 +111,21 @@ const UpdatePropertyPage = () => {
       handleSubmit={handleSubmit} 
       formValues={formValues} 
       setUploadImage={setUploadImage}
-      action={"Update Property"}>
+      action={"Update Property"}
+      url={houseData.property.image_url}>
 
       <CardContainer heading={"Tenants"}>
-        {houseData && houseData.tenants.map(tenant => (
-          <UserCard {...tenant} />
+        {houseData.tenants.map(tenant => (
+          <UserCard {...tenant} onDelete={deleteUser} />
         ))}
-          
       </CardContainer>
+      <select name='tenant_id' value={''} onChange={addTenant}>
+        <option value='' disabled selected>Add Tenant</option>
+        {calculatedPossibleTenants().map(tenant => (
+          tenant.role_name === "tenant" && <option value={tenant.id}>{tenant.name}</option>
+        ))}
+    
+      </select>
       
     </NewHouse>
 

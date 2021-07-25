@@ -12,9 +12,7 @@ const CalendarPage = () => {
 
   useEffect(() => {
     API.request('events')
-    .then(res => {
-      console.log(res.data)
-      setEvents(res.data)})
+    .then(res => setEvents(res.data))
   }, [])
 
   function formattedEvents(events) {

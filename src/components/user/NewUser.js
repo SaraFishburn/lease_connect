@@ -38,7 +38,6 @@ function NewUser() {
     const handleSubmit = async (event) => {
         alert(`${formValues.name} Registered Successfully!`)
         event.preventDefault()
-        console.log(formValues)
         const res = await fetch("http://localhost:4000/api/users", {
             method: "POST",
             body: JSON.stringify(formValues),
