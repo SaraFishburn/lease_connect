@@ -9,7 +9,7 @@ function NewHouse(props) {
         <div class="formDiv">
             <form onSubmit={props.handleSubmit}>
             <h1>{`${props.action}`}</h1>
-                <label>Title :</label>
+                <label>Title:</label>
                 <input 
                     name='title' 
                     type="text" 
@@ -17,7 +17,7 @@ function NewHouse(props) {
                     onChange={props.handleChange} 
                     placeholder={`${props.formValues.title != "" ? `${props.formValues.title}` : ""}`}/>
 
-                <label>Address :</label>
+                <label>Address:</label>
                 <input 
                     name='address' 
                     type="text" 
@@ -29,7 +29,6 @@ function NewHouse(props) {
 
                 {props.children}
                 <input type="submit" value={`${props.action}`} />
-
             </form>
         </div>
     )
