@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NewHouse from "../../components/house/NewHouse"
+import NewEvent from '../../components/event/NewEvent'
 import API from '../../helpers/api'
 
 const CreatePropertyPage = () => {
@@ -27,7 +28,7 @@ const CreatePropertyPage = () => {
       .then(url => {
           API.request("houses", {
               method: "POST",
-              data: JSON.stringify({...formValues, image_url: url}),
+              data: {...formValues, image_url: url},
               headers: {
                   "Content-Type": "application/json",
               },
@@ -39,12 +40,11 @@ const CreatePropertyPage = () => {
 
   return (
     <NewHouse 
-      handleChange={handleChange} 
-      handleSubmit={handleSubmit} 
-      formValues={formValues} 
-      setUploadImage={setUploadImage}
-      action={"Create Property"} />
-
+    handleChange={handleChange} 
+    handleSubmit={handleSubmit} 
+    formValues={formValues} 
+    setUploadImage={setUploadImage}
+    action={"Create Property"} />
   )
 }
 

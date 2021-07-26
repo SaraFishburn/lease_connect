@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter,
   Switch,
   Route
 } from "react-router-dom";
+import API from './helpers/api';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 
@@ -32,6 +33,15 @@ function App() {
   }
 
   const [user, setUser] = useState(userLoggedIn())
+  const [house, setHouse] = useState({})
+
+  useEffect(() => {
+    if(user) {
+      API.request('user')
+      .then(res => setHouse(res.data.house))
+    }
+  }, [user])
+
 
   return (
     <>
@@ -59,6 +69,10 @@ function App() {
             <CreateAccountPage />
           </PrivateRoute>
 
+          <PrivateRoute path="/documents">
+            <DocumentsPage {...house} />
+          </PrivateRoute>
+
           <PrivateRoute path="/create_property">
             <CreatePropertyPage />
           </PrivateRoute>
@@ -83,12 +97,8 @@ function App() {
             <PropertyShowPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/documents">
-            <DocumentsPage />
-          </PrivateRoute>
-
           <PublicRoute path="/login">
-            <LoginPage setUser={setUser} />
+            <LoginPage setUser={setUser} setHouse={setHouse} />
           </PublicRoute>
 
           <PrivateRoute path="/maintenance_page">
