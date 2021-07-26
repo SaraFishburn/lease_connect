@@ -44,6 +44,10 @@ function App() {
 
         <Switch>
           <Route exact path="/">
+            <div></div>
+          </Route>
+
+          <Route exact path="/test/:id">
             <Test />
           </Route>
 
