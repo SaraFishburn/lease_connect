@@ -13,7 +13,17 @@ const CardContainer = (props) => {
       <div 
         className="heading"
         onClick={() => {setCollapseDiv(val => !val)}}>
-        {`${props.heading}`}
+          {`${props.heading}`}
+          {
+            props.uploadIcon &&
+            <div 
+              className="upload-button"
+              onMouseEnter={() => props.setUploadHover(true)}
+              onMouseLeave={() => props.setUploadHover(false)}>
+              {props.uploadIcon}
+              Upload
+            </div>
+          }
         {
           collapseDiv ? 
           <Icon icon={caretRight} className="dropdown-icon" color="#2A2B77" />
