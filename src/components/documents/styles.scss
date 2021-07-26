@@ -1,0 +1,33 @@
+.document-card {
+  width: 250px;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+  box-shadow: var(--dp4);
+  border-radius: 15px;
+  padding: 15px;
+  margin: 10px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--dp8);
+    transform: scale(1.01);
+  }
+  
+  &:active {
+    box-shadow: var(--dp12);
+    transform: scale(1.02);
+  }
+
+  h1 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .doc-icon {
+    font-size: 40px;
+    margin: 10px;
+  }
+
+}
