@@ -11,6 +11,18 @@
 
   text-align: left;
 
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--dp8);
+    transform: scale(1.01);
+  }
+
+  &:active {
+    box-shadow: var(--dp12);
+    transform: scale(1.02);
+  }
+
   
   .card-content {
 

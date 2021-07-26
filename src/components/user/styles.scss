@@ -1,53 +1,63 @@
-.radio-buttons {
+.role {
   display: flex;
-  width: 90vw;
-  max-width: 500px;
-  flex-direction: row !important;
-  align-items: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
 
-  label {
+  .radio-buttons {
     display: flex;
-    width: fit-content !important;
-    align-items: center;
-    margin-right: 20px;
-    font-size: 14px !important;
-
-    
-    input[type=radio] {
-      height: 20px !important;
-      width: 20px !important;
-      box-shadow: none !important;
-      position: fixed;
-      opacity: 0;
-      margin: 0;
-      cursor: pointer;
-      
-      &:checked + div {
-        .selected-fill {
-          background-color: var(--mid-blue);
-        }
-        
-      }
-    }
-
-    .custom-radio {
-      height: 21px !important;
-      width: 21px !important;
-      border-radius: 50%;
-      border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
-      box-shadow: var(--dp4);
+    width: 90vw;
+    max-width: 500px;
+    flex-direction: row !important;
+    align-items: flex-start;
+  
+    label {
       display: flex;
+      width: fit-content !important;
       align-items: center;
-      justify-content: center;
-      box-sizing: border-box;
-      margin-right: 10px;
+      margin: 0 20px;
+      font-size: 14px !important;
 
-      .selected-fill {
-        height: 15px;
-        width: 15px;
-        border-radius: 50%;
+      &:last-child {
+        margin-left: 0;
       }
-
+  
+      
+      input[type=radio] {
+        height: 20px !important;
+        width: 20px !important;
+        box-shadow: none !important;
+        position: fixed;
+        opacity: 0;
+        margin: 0;
+        cursor: pointer;
+        
+        &:checked + div {
+          .selected-fill {
+            background-color: var(--mid-blue);
+          }
+          
+        }
+      }
+  
+      .custom-radio {
+        height: 21px !important;
+        width: 21px !important;
+        border-radius: 50%;
+        border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+        box-shadow: var(--dp4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        margin-right: 10px;
+  
+        .selected-fill {
+          height: 15px;
+          width: 15px;
+          border-radius: 50%;
+        }
+  
+      }
     }
   }
 }
@@ -102,5 +112,22 @@
 
     }
   }
+
+}
+
+.update-password-div {
+  margin-top: 100px;
+
+  h1 {
+    color: white;
+  }
+
+  label {
+    color: white;
+  }
+}
+
+.my-account-div {
+  margin-top: 100px;
 
 }

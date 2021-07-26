@@ -14,7 +14,7 @@ export default function HouseCard(props) {
     const [deleteHover, setDeleteHover] = useState()
 
     return (
-        <div class="house-card">
+        <Link class="house-card" to={`houses/view/${props.id}`}>
             <div class="card-content">
                 <h1>{props.title}</h1>
                 <div class="card-middle">
@@ -51,6 +51,6 @@ export default function HouseCard(props) {
                 />
                 </div>
             </div> 
-        </div>
+        </Link>
     )
 }

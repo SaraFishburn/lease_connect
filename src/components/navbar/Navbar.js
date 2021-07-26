@@ -16,6 +16,7 @@ const Navbar = () => {
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_account' >CREATE ACCOUNT</Link></li>
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_property' >CREATE PROPERTY</Link></li>
         <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/admin_home' >ADMIN HOME</Link></li>
+        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/my_account' >MY ACCOUNT</Link></li>
       </ul>
       <div className="navbar">
         <div className="nav-rectangle">
