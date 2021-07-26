@@ -78,7 +78,7 @@ function NewUser() {
                         <option value={house.id}>{house.title}</option>
                     ))}
                 </select>
-                <input type="submit" value="Create & Email" />
+                <input type="submit" value="Create Account" />
             </form>
         </div>
     )

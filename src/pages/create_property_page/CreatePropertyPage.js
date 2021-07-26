@@ -38,7 +38,7 @@ const CreatePropertyPage = () => {
 
   return (
     
-    <NewHouse handleChange={handleChange} handleSubmit={handleSubmit} formValues={formValues} setUploadImage={setUploadImage}/>
+    <NewHouse handleChange={handleChange} formValues={formValues} setUploadImage={setUploadImage}/>
 
   )
 }
