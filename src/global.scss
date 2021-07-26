@@ -153,6 +153,46 @@ body {
       }
     }
 
+    textarea {
+      width: 80vw;
+      height: 120px;
+
+      max-width: 500px;
+      padding: 0px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+      border-radius: 15px;
+      box-shadow: var(--dp4);
+      box-sizing: border-box;
+
+      &[type=submit] {
+        background-color: var(--button-green);
+        color: white;
+        font-size: 18px;
+        margin: 46px 0;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+
+        &:hover {
+          background-color: var(--button-green);
+          font-weight: 700;
+          box-shadow: var(--dp8);
+          transform: scale(1.01)
+        }
+
+        &:active {
+          box-shadow: var(--dp12);
+          transform: scale(1.02)
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
     select {
       @extend input;
       margin-top: 46px !important;

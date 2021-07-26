@@ -16,6 +16,8 @@ import Test from './pages/Test';
 import './global.scss'
 import AdminHomePage from './pages/admin_home_page/AdminHomePage';
 import UpdatePropertyPage from './pages/update_property_page/UpdatePropertyPage';
+import MaintenanceRequestPage from './pages/maintenance_request_page/MaintenanceRequestPage';
+import MaintenanceDisplayPage from "./pages/maintenance_display_page/MaintenanceDisplayPage";
 
 
 function App() {
@@ -63,6 +65,14 @@ function App() {
           <PublicRoute path="/login">
             <LoginPage setUser={setUser} />
           </PublicRoute>
+
+          <PrivateRoute path="/maintenance_page">
+            <MaintenanceRequestPage/>
+          </PrivateRoute>
+
+          <PrivateRoute path="/maintenance_display_page">
+            <MaintenanceDisplayPage/>
+          </PrivateRoute>
         </Switch>
       </BrowserRouter>
     </>
