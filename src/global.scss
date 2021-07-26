@@ -83,6 +83,15 @@ body {
 }
 
 
+h1 {
+  font-size: 24px;
+  font-weight: 400;
+  width: 90vw;
+  max-width: 500px;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
 .formDiv {
   display: flex;
   justify-content: center;
@@ -97,14 +106,6 @@ body {
     width: fit-content;
     height: fit-content;
 
-    h1 {
-      font-size: 24px;
-      font-weight: 400;
-      width: 90vw;
-      max-width: 500px;
-      text-align: left;
-      margin-bottom: 15px;
-    }
 
     label {
       width: 90vw;

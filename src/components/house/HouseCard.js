@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {
-    Link
+    Link,
   } from "react-router-dom";
 import "./styles.scss"
 
@@ -14,7 +14,7 @@ export default function HouseCard(props) {
     const [deleteHover, setDeleteHover] = useState()
 
     return (
-        <Link class="house-card" to={`houses/view/${props.id}`}>
+        <div class="house-card">
             <div class="card-content">
                 <h1>{props.title}</h1>
                 <div class="card-middle">
@@ -30,7 +30,7 @@ export default function HouseCard(props) {
                     className="edit-icon-div"
                     onMouseEnter={() => setEditHover(true)}
                     onMouseLeave={() => setEditHover(false)}>
-                    <Link to={`houses/edit/${props.id}`}>
+                    <Link to={`/houses/edit/${props.id}`}>
                         <Icon
                             className={`icon${editHover ? '-white' : ''}`}
                             icon={noteEditLine} 
@@ -51,6 +51,6 @@ export default function HouseCard(props) {
                 />
                 </div>
             </div> 
-        </Link>
+        </div>
     )
 }

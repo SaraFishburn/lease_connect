@@ -1,6 +1,7 @@
 .house-card {
   position: relative;
   width: 250px;
+  max-width: 250px;
   padding: 10px;
   margin: 10px;
 
@@ -8,6 +9,7 @@
   border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
   border-radius: 15px;
   box-shadow: var(--dp4);
+  box-sizing: border-box;
 
   text-align: left;
 
@@ -30,6 +32,8 @@
       font-size: 18px;
       margin: 2px 0 10px 0;
       overflow-wrap: anywhere;
+      width: unset;
+      font-weight: 500;
     }
 
 

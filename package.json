@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@iconify-icons/bx": "^1.1.1",
+    "@iconify-icons/carbon": "^1.1.5",
     "@iconify-icons/ci": "^1.1.0",
     "@iconify-icons/clarity": "^1.1.1",
     "@iconify-icons/ic": "^1.1.7",
