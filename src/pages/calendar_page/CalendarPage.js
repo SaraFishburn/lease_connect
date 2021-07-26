@@ -4,6 +4,7 @@ import Calendar from '../../components/calendar/Calendar'
 import Event from '../../components/event/Event'
 import Dayjs from 'dayjs'
 import './styles.scss'
+import NewEvent from '../../components/event/NewEvent'
 
 const CalendarPage = () => {
 
@@ -31,6 +32,7 @@ const CalendarPage = () => {
           return <Event {...{event}} />
         }
       })}
+      <NewEvent />
     </div>
   )
 }

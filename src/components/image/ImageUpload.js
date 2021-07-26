@@ -33,7 +33,7 @@ const ImageUpload = (props) => {
         if(image === "" && !previewURL) {
             return new Promise((_, rej) => rej("No Image Supplied! :'("))
         }
-        if(previewURL) {
+        if(image === "") {
             return new Promise(res => res(previewURL))
         } else {
             const data = new FormData()

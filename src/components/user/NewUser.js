@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import API from '../../helpers/api';
 import './styles.scss'
 
 function NewUser() {
@@ -15,8 +16,8 @@ function NewUser() {
     const [formValues, setFormValues] = useState(defaultFormValues);
 
     const getHouses = () => {
-        fetch('http://localhost:4000/api/houses')
-            .then (results => results.json())
+        API.request('houses')
+            .then (results => results.data)
             .then (results => setFormValues({
                 ...formValues,
                 houses: results
@@ -38,9 +39,9 @@ function NewUser() {
     const handleSubmit = async (event) => {
         alert(`${formValues.name} Registered Successfully!`)
         event.preventDefault()
-        const res = await fetch("http://localhost:4000/api/users", {
+        const res = await API.request("users", {
             method: "POST",
-            body: JSON.stringify(formValues),
+            data: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
             },
@@ -78,7 +79,7 @@ function NewUser() {
                         <option value={house.id}>{house.title}</option>
                     ))}
                 </select>
-                <input type="submit" value="Create & Email" />
+                <input type="submit" value="Create Account" />
             </form>
         </div>
     )

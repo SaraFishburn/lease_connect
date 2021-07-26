@@ -7,6 +7,7 @@ import CardContainer from '../../components/card_container/CardContainer'
 import UserCard from '../../components/user/UserCard'
 import HouseCard from '../../components/house/HouseCard'
 import './styles.scss'
+import API from '../../helpers/api';
 
 const AdminHomePage = () => {
 
@@ -14,14 +15,14 @@ const AdminHomePage = () => {
   const [houses, setHouses] = useState([])
 
   useEffect(() => {
-      fetch('http://localhost:4000/api/users')
-          .then (res => res.json())
+      API.request('users')
+          .then (res => res.data)
           .then (data => setUsers(data))
   }, [])
 
   useEffect(() => {
-      fetch('http://localhost:4000/api/houses')
-          .then (res => res.json())
+      API.request('houses')
+          .then (res => res.data)
           .then (data => setHouses(data))
   }, [])
 

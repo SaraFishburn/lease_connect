@@ -16,7 +16,6 @@ export default function Test() {
       <NewUser/>
       <NewDocument />
       <UserCard />
-      <PropertyShowPage />
     </div>
   )
 }
