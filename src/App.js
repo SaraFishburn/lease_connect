@@ -11,6 +11,11 @@ import CalendarPage from "./pages/calendar_page/CalendarPage"
 import LoginPage from "./pages/login_page/LoginPage"
 import CreateAccountPage from './pages/create_account_page/CreateAccountPage';
 import CreatePropertyPage from './pages/create_property_page/CreatePropertyPage'
+import UpdateAccountPage from './pages/update_account_page/UpdateAccountPage';
+import PmHomePage from './pages/pm_home_page/PmHomePage';
+import PropertyShowPage from './pages/property_show_page/PropertyShowPage';
+import DocumentsPage from './pages/documents_page/DocumentsPage';
+
 import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
@@ -60,6 +65,22 @@ function App() {
 
           <PrivateRoute path="/houses/edit/:id">
             <UpdatePropertyPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/my_account">
+            <UpdateAccountPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/pm_home">
+            <PmHomePage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/houses/view/:id">
+            <PropertyShowPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/documents">
+            <DocumentsPage />
           </PrivateRoute>
 
           <PublicRoute path="/login">

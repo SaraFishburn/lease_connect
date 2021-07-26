@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import {
+  Link
+} from "react-router-dom";
+
 import CardContainer from '../../components/card_container/CardContainer'
 import UserCard from '../../components/user/UserCard'
 import HouseCard from '../../components/house/HouseCard'
@@ -31,7 +35,7 @@ const AdminHomePage = () => {
     
       <CardContainer heading={"Properties"}>
         {houses.map(house => (
-          <HouseCard {...house} />
+          <Link to={`houses/view/${house.id}`}><HouseCard {...house} /></Link>
         ))}
       </CardContainer>
 

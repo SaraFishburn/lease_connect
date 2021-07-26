@@ -11,7 +11,7 @@ import './styles.scss'
 const UpdatePropertyPage = () => {
 
   const [uploadImage, setUploadImage] = useState(() => () => {})
-  let { id } = useParams()
+  const { id } = useParams()
 
   const [houseData, setHouseData] = useState({
     property: {},

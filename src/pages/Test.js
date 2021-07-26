@@ -6,6 +6,7 @@ import NewUser from '../components/user/NewUser';
 import NewDocument from '../components/documents/NewDocument';
 import HouseCard from '../components/house/HouseCard';
 import UserCard from '../components/user/UserCard';
+import PropertyShowPage from './property_show_page/PropertyShowPage';
 
 export default function Test() {
   return (
@@ -14,8 +15,8 @@ export default function Test() {
       <ImageUpload />
       <NewUser/>
       <NewDocument />
-      <HouseCard />
       <UserCard />
+      <PropertyShowPage />
     </div>
   )
 }
