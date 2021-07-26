@@ -9,11 +9,14 @@ import editIcon from '@iconify-icons/akar-icons/edit';
 
 const ImageUpload = (props) => {
     const [image, setImage ] = useState("");
-    const [previewURL, setPreviewURL] = useState(props.URL || '')
+    const [previewURL, setPreviewURL] = useState(props.url)
     const inputRef = useRef()
 
     useEffect(() => {
-        console.log(image)
+        setPreviewURL(props.url)
+    }, [props.url])
+
+    useEffect(() => {
         if(image === "") {
             return
         }
@@ -24,22 +27,26 @@ const ImageUpload = (props) => {
         if(!props.setUploadImage) return
 
         props.setUploadImage(_ => uploadImage)
-    }, [image, props.setUploadImage])
+    }, [image, props.setUploadImage, previewURL])
 
-    function uploadImage() { 
-        if(image === "") {
+    function uploadImage() {
+        if(image === "" && !previewURL) {
             return new Promise((_, rej) => rej("No Image Supplied! :'("))
         }
-        const data = new FormData()
-        data.append("file", image)
-        data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
-        data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
-        return fetch( process.env.REACT_APP_IMAGE_FETCH , {
-            method:"post",
-            body: data
-        })
-        .then(res => res.json())
-        .then(image_data => image_data.url)
+        if(previewURL) {
+            return new Promise(res => res(previewURL))
+        } else {
+            const data = new FormData()
+            data.append("file", image)
+            data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
+            data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
+            return fetch( process.env.REACT_APP_IMAGE_FETCH , {
+                method:"post",
+                body: data
+            })
+            .then(res => res.json())
+            .then(image_data => image_data.url)
+        }
     }
 
     return (
@@ -57,17 +64,16 @@ const ImageUpload = (props) => {
                             e.target.files[0] != undefined && (
                                 setImage(e.target.files[0])
                             )
-                            console.log('changed image')
                         }}>
                     </input>
                     <span>Click to upload image</span>
             </div>
-            <div class={`image-preview ${image != "" ? "preview-background" : ""}`}>
+            <div class={`image-preview ${previewURL ? "preview-background" : ""}`}>
                 <img src={previewURL} height="125%"/>
             </div>
 
             {
-                image != "" && (
+                previewURL && (
                     <div className="edit-image">
                         <Icon icon={editIcon} className="edit-icon" color="#2A2B77" />
                     </div>

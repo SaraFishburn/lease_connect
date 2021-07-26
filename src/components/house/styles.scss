@@ -17,6 +17,7 @@
     h1 {
       font-size: 18px;
       margin: 2px 0 10px 0;
+      overflow-wrap: anywhere;
     }
 
 
@@ -55,6 +56,8 @@
 
       p {
         margin: 2px 0 2px 10px;
+        padding-bottom: 20px;
+        overflow-wrap: anywhere;
       }
 
     }
@@ -68,20 +71,17 @@
     padding-right: 5px;
     display: flex;
 
-    .icon {
+    .icon, .delete-icon {
       font-size: 24px;
       cursor: pointer;
       padding: 5px;
     }
 
-    .icon-white {
+    .icon-white, .delete-icon-white {
       @extend .icon;
       background-color: var(--mid-blue);
       clip-path: circle(50% at 50% 50%);
-
     }
 
-
-    
   }
 }

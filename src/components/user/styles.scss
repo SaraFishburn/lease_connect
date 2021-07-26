@@ -1,6 +1,6 @@
 .radio-buttons {
   display: flex;
-  width: 80vw;
+  width: 90vw;
   max-width: 500px;
   flex-direction: row !important;
   align-items: flex-start;
@@ -55,8 +55,9 @@
 .user-card {
   position: relative;
 
-  height: 80px;
-  width: 250px;
+  min-height: 80px;
+  max-width: 270px;
+  min-width: 250px;
   padding: 10px;
   margin: 10px;
 
@@ -64,18 +65,21 @@
   border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
   border-radius: 15px;
   box-shadow: var(--dp4);
+  box-sizing: border-box;
 
   text-align: left;
 
   .card-content {
     h1 {
+      overflow-wrap: anywhere;
       margin: 2px 0 10px 0;
       font-size: 18px;
     }
-
+    
     .card-middle {
       p {
         margin: 2px 0;
+        overflow-wrap: anywhere;
       }
     }
   }
@@ -84,13 +88,13 @@
     bottom: 0;
     right: 0;
     padding-right: 5px;
-
+    
     .delete-icon {
       font-size: 24px;
       cursor: pointer;
       padding: 5px;
     }
-
+    
     .delete-icon-white {
       @extend .delete-icon;
       border-radius: 50%;
