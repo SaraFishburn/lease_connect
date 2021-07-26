@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import NewHouse from "../../components/house/NewHouse"
+import API from '../../helpers/api'
 
 const CreatePropertyPage = () => {
   const [uploadImage, setUploadImage] = useState(() => () => {})
@@ -24,15 +25,15 @@ const CreatePropertyPage = () => {
 
       uploadImage()
       .then(url => {
-          fetch("http://localhost:4000/api/houses", {
+          API.request("houses", {
               method: "POST",
-              body: JSON.stringify({...formValues, image_url: url}),
+              data: JSON.stringify({...formValues, image_url: url}),
               headers: {
                   "Content-Type": "application/json",
               },
           })
       })
-      .catch(err => console.log(err))
+      .catch(res => console.log(res.data))
       setFormValues(defaultFormValues)
   }
 

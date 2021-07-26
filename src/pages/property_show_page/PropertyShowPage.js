@@ -13,6 +13,7 @@ import cloudUpload from '@iconify-icons/carbon/cloud-upload';
 
 
 import './styles.scss'
+import API from '../../helpers/api'
 
 const PropertyShowPage = () => {
 
@@ -25,8 +26,8 @@ const PropertyShowPage = () => {
   })
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/houses/${id}`)
-        .then (res => res.json())
+    API.request(`houses/${id}`)
+        .then (res => res.data)
         .then (data => setHouseData(data))
   }, [])
 

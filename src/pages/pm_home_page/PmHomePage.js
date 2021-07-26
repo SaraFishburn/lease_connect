@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import HouseCard from '../../components/house/HouseCard'
 import CardContainer from '../../components/card_container/CardContainer'
 import './styles.scss'
+import API from '../../helpers/api'
 
 const PmHomePage = () => {
 
   const [houses, setHouses] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/houses')
-        .then (res => res.json())
+    API.request('houses')
+        .then (res => res.data)
         .then (data => setHouses(data))
   }, [])
 
