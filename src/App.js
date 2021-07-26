@@ -15,8 +15,9 @@ import Navbar from './components/navbar/Navbar';
 import Test from './pages/Test';
 import './global.scss'
 import AdminHomePage from './pages/admin_home_page/AdminHomePage';
-import {MaintenanceRequestPage} from './pages/maintenance_request_page/MaintenanceRequestPage';
-import {MaintenanceDisplayPage} from "./pages/maintenance_display_page/MaintenanceDisplayPage";
+import UpdatePropertyPage from './pages/update_property_page/UpdatePropertyPage';
+import MaintenanceRequestPage from './pages/maintenance_request_page/MaintenanceRequestPage';
+import MaintenanceDisplayPage from "./pages/maintenance_display_page/MaintenanceDisplayPage";
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
 
           <PrivateRoute path="/admin_home">
             <AdminHomePage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/houses/edit/:id">
+            <UpdatePropertyPage />
           </PrivateRoute>
 
           <PublicRoute path="/login">
