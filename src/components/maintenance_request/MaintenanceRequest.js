@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageUpload from "../image/ImageUpload";
 
-export function MaintenanceRequest(props) {
+export default function MaintenanceRequest(props) {
     return (
         <div className="formDiv">
             <form>
