@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import API from '../../helpers/api';
 import './styles.scss'
 
 function NewUser() {
@@ -21,9 +22,9 @@ function NewUser() {
     const handleSubmit = async (event) => {
         alert(`${formValues.name} account updated!`)
         event.preventDefault()
-        const res = await fetch("http://localhost:4000/api/users", {
+        const res = await API.request("users", {
             method: "PATCH",
-            body: JSON.stringify(formValues),
+            data: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
             },

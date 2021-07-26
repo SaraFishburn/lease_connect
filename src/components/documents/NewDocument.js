@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import DocumentUpload from '../documents/DocumentUpload'
-
+import API from '../../helpers/api'
 
 function NewDocument() {
 
@@ -29,9 +29,10 @@ function NewDocument() {
 
     const handleSubmit = async (event) => {
         event.preventDefault() 
-        const res = await fetch("http://localhost:4000/api/documents", {
+
+        const res = await API.request("documents", {
             method: "POST",
-            body: JSON.stringify(formValues),
+            data: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
             },
