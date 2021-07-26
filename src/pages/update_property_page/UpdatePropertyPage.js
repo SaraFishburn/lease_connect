@@ -7,6 +7,7 @@ import CardContainer from '../../components/card_container/CardContainer'
 import UserCard from '../../components/user/UserCard'
 
 import './styles.scss'
+import API from '../../helpers/api'
 
 const UpdatePropertyPage = () => {
 
@@ -21,8 +22,8 @@ const UpdatePropertyPage = () => {
   const [possibleTenants, setPossibleTenants] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/houses/${id}`)
-        .then (res => res.json())
+    API.request(`houses/${id}`)
+        .then (res => res.data)
         .then (data => setHouseData(data))
   }, [])
 
@@ -38,8 +39,8 @@ const UpdatePropertyPage = () => {
   }, [houseData])
 
   useEffect(() => {
-    fetch('http://localhost:4000/api/users')
-    .then (res => res.json())
+    API.request('users')
+    .then (res => res.data)
     .then (data => setPossibleTenants(data))
   }, [])
 
@@ -56,15 +57,15 @@ const UpdatePropertyPage = () => {
       console.log(houseData.property.image_url)
       uploadImage()
       .then(url => {
-          fetch(`http://localhost:4000/api/houses/${id}`, {
+          API.request(`houses/${id}`, {
               method: "PATCH",
-              body: JSON.stringify({...formValues, image_url: url}),
+              data: JSON.stringify({...formValues, image_url: url}),
               headers: {
                   "Content-Type": "application/json",
               },
           })
       })
-      .catch(err => console.log(err))
+      .catch(res => console.log(res.data))
   }
 
   function addTenant(e) {
