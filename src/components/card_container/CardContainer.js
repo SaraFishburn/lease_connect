@@ -19,7 +19,10 @@ const CardContainer = (props) => {
             <div 
               className="upload-button"
               onMouseEnter={() => props.setUploadHover(true)}
-              onMouseLeave={() => props.setUploadHover(false)}>
+              onMouseLeave={() => props.setUploadHover(false)}
+              onClick={() => {
+                props.handleClick()
+                setCollapseDiv(val => !val)}}>
               {props.uploadIcon}
               Upload
             </div>

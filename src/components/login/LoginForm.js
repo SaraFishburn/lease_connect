@@ -34,6 +34,7 @@ function LoginForm(props) {
         })
         .then(res => {
             props.setUser(true)
+            props.setHouse(res.data.house)
             history.push("/")
         })
     }
