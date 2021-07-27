@@ -37,7 +37,6 @@ function NewUser() {
     }
 
     const handleSubmit = async (event) => {
-        alert(`${formValues.name} Registered Successfully!`)
         event.preventDefault()
         const res = await API.request("users", {
             method: "POST",

@@ -71,7 +71,7 @@ describe ("Test", () => {
                 cy.get('input[type="radio"]').check('Tenant')
                 cy.get('input[value="Tenant"]').should('be.checked')
                 cy.get('input[type="radio"]').check('Property Manager')
-                cy.get('input[value="Tenant"]').should('be.checked')
+                cy.get('input[value="Property Manager"]').should('be.checked')
             })    
     })
 
