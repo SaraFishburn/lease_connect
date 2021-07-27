@@ -43,6 +43,11 @@ function App() {
   }, [user])
 
 
+
+  useEffect(() => {
+    console.log(house)
+  }, [house])
+
   return (
     <>
       <div className={`background-circles ${!user ? 'login-circle' : ''}`}></div>

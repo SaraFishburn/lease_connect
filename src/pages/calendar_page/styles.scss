@@ -1,11 +1,32 @@
 .calendar-page {
-  width: fit-content;
+  width: 100vw;
   min-width: 306px;
-  margin: 20px auto;
+  margin: auto;
+  margin-top: 80px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  .calendar-tile-wrapper {
+    width: fit-content;
+
+    .ghost-tile {
+      height: 0px;
+      opacity: 0;
+    }
+  }
 }
 
 input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
+}
+
+@media only screen and (min-width: 750px) {
+  .calendar-tile-wrapper {
+    display: flex;
+  }
 }
