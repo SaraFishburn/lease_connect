@@ -1,5 +1,7 @@
 .event-tile {
   min-height: 60px;
+  height: fit-content;
+  min-width: 300px;
   display: flex;
   border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
   border-radius: 15px;
@@ -31,6 +33,11 @@
   .lease {
     border-right: 5px solid var(--logo-green);
   }
+  
+  .other {
+    
+    border-right: 5px solid var(--pending-yellow);
+  }
 
   .event-info {
     display: flex;
@@ -51,5 +58,107 @@
     }
 
 
+  }
+}
+
+.new-event {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  transition: max-height 0.4s;
+  max-height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  .new-event-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  
+    width: 90vw;
+    height: 40px;
+    max-width: 500px;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    padding: 0px 20px;
+    margin: 30px auto;
+    
+    background-color: var(--button-green);
+    color: white;
+
+    border-radius: 15px;
+    box-shadow: var(--dp4);
+    box-sizing: border-box;
+
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: var(--dp8);
+      transform: scale(1.01)
+    }
+
+    &:active {
+      box-shadow: var(--dp12);
+      transform: scale(1.02)
+    }
+  }
+
+  .formDiv {
+    transition: 0.4s;
+    background-color: var(--dark-blue);
+    width: 100vw;
+    height: 250px;
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
+    transform: translateY(100%);
+    z-index: 2;
+
+    form {
+      padding: 20px;
+
+      .datetime-fields {
+        width: 90vw;
+        max-width: 500px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        input {
+          width: 49%;
+        }
+      }
+
+      select {
+        margin-top: 0px !important;
+
+        &:nth-child(2) {
+          margin-top: 8px !important;
+        }
+      }
+
+      .create-event-button {
+        margin: 8px 0;
+      }
+    }
+  }
+
+  .open-form-div {
+    transition: 0.4s;
+    transform: translateY(0%);
+  }
+
+}
+.open-new-event-div {
+  max-height: 250px !important;
+}
+
+@media only screen and (min-width: 750px) {
+  .event-tile {
+    margin-left: 20px;
   }
 }

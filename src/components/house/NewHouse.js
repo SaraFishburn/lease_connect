@@ -3,8 +3,6 @@ import "./styles.scss"
 
 function NewHouse(props) {
 
-    console.log(props.url)
-
     return (
         <div class="formDiv">
             <form onSubmit={props.handleSubmit}>
