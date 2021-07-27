@@ -1,29 +1,123 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route
+} from "react-router-dom";
+import API from './helpers/api';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+
 import CalendarPage from "./pages/calendar_page/CalendarPage"
-import NewUser from './components/user/NewUser';
+import LoginPage from "./pages/login_page/LoginPage"
+import CreateAccountPage from './pages/create_account_page/CreateAccountPage';
+import CreatePropertyPage from './pages/create_property_page/CreatePropertyPage'
+import UpdateAccountPage from './pages/update_account_page/UpdateAccountPage';
+import PmHomePage from './pages/pm_home_page/PmHomePage';
+import PropertyShowPage from './pages/property_show_page/PropertyShowPage';
+import DocumentsPage from './pages/documents_page/DocumentsPage';
+
 import Navbar from './components/navbar/Navbar';
-import './global.css'
-import NewHouse from './components/house/NewHouse';
-import LoginForm from './components/login/LoginForm';
+import Test from './pages/Test';
+import './global.scss'
+import AdminHomePage from './pages/admin_home_page/AdminHomePage';
+import UpdatePropertyPage from './pages/update_property_page/UpdatePropertyPage';
+import {MaintenanceRequestPage} from './pages/maintenance_request_page/MaintenanceRequestPage';
+import {MaintenanceDisplayPage} from "./pages/maintenance_display_page/MaintenanceDisplayPage";
 
 
 
 function App() {
+
+  function userLoggedIn() {
+    return Boolean(localStorage.getItem('authToken'))
+  }
+
+  const [user, setUser] = useState(userLoggedIn())
+  const [house, setHouse] = useState({})
+
+  useEffect(() => {
+    if(user) {
+      API.request('user')
+      .then(res => setHouse(res.data.house))
+    }
+  }, [user])
+
+
+
+  useEffect(() => {
+    console.log(house)
+  }, [house])
+
   return (
-    <div style={{ textAlign: 'center' }}>
-      <Navbar />
-      <header>
-        <h1>Lease Connect</h1>
-        <LoginForm />
-        <NewUser/>
-        <NewHouse />
-      </header>
+    <>
+      <div className={`background-circles ${!user ? 'login-circle' : ''}`}></div>
+      <BrowserRouter>
 
-      <CalendarPage />
+        {user && (
+          <Navbar />
+        )}
 
-    </div>
+        <Switch>
+          <Route exact path="/">
+            <div></div>
+          </Route>
+
+          <Route exact path="/test/:id">
+            <Test />
+          </Route>
+
+          <PrivateRoute path="/calendar">
+            <CalendarPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/create_account">
+            <CreateAccountPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/documents">
+            <DocumentsPage {...house} />
+          </PrivateRoute>
+
+          <PrivateRoute path="/create_property">
+            <CreatePropertyPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/admin_home">
+            <AdminHomePage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/houses/edit/:id">
+            <UpdatePropertyPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/my_account">
+            <UpdateAccountPage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/pm_home">
+            <PmHomePage />
+          </PrivateRoute>
+
+          <PrivateRoute path="/houses/view/:id">
+            <PropertyShowPage />
+          </PrivateRoute>
+
+          <PublicRoute path="/login">
+            <LoginPage setUser={setUser} setHouse={setHouse} />
+          </PublicRoute>
+
+          <PrivateRoute path="/maintenance_page">
+            <MaintenanceRequestPage/>
+          </PrivateRoute>
+
+          <PrivateRoute path="/maintenance_display_page">
+            <MaintenanceDisplayPage/>
+          </PrivateRoute>
+        </Switch>
+      </BrowserRouter>
+    </>
   );
 }
 
 export default App;
-

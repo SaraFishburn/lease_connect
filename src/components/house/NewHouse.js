@@ -1,57 +1,35 @@
-import React, { Component } from 'react'
-import "./styles.css"
+import ImageUpload from '../image/ImageUpload'
+import "./styles.scss"
 
-class NewHouse extends Component {
-    constructor(props) {
-        super(props)
+function NewHouse(props) {
 
-        this.state = {
-            title: "",
-            address: "",
-        }
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
+    return (
+        <div class="formDiv">
+            <form onSubmit={props.handleSubmit}>
+            <h1>{`${props.action}`}</h1>
+                <label>Title:</label>
+                <input 
+                    name='title' 
+                    type="text" 
+                    value={props.formValues.title} 
+                    onChange={props.handleChange} 
+                    placeholder={`${props.formValues.title != "" ? `${props.formValues.title}` : ""}`}/>
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name] : event.target.value
-        })
-    }
-    
-    handleSubmit = async (event) => {
-        alert(`${this.state.title} Registered Successfully!`)
-        console.log(this.state);
-        event.preventDefault() 
-        const res = await fetch("http://localhost:4000/api/houses", {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": ``,
-            },
-        });  
-        console.log(this.state);
-        this.setState({
-            title: "",
-            address: "",
-        })
-    }
+                <label>Address:</label>
+                <input 
+                    name='address' 
+                    type="text" 
+                    value={props.formValues.address}
+                    onChange={props.handleChange} 
+                    placeholder={`${props.formValues.address != "" ? `${props.formValues.address}` : ""}`} />
 
-    render() {
-        return (
-            <div class="formDiv">
+                <ImageUpload setUploadImage={props.setUploadImage} url={props.url}/>
 
-                <form onSubmit={this.handleSubmit}>
-                    <h1>Create House</h1>
-                    <label>Title :</label><br/><input name='title' type="text" value={this.state.title} onChange={this.handleChange} placeholder="Property Title..." /><br />
-                    <label>Address :</label><br/><input name='address' type="text" value={this.state.address} onChange={this.handleChange} placeholder="Property Address..." /><br />
-                    <input type="submit" value="Create House" />
-                </form>
-
-            </div>
-            
-        )
-    }
+                {props.children}
+                <input type="submit" value={`${props.action}`} />
+            </form>
+        </div>
+    )
 }
 
 export default NewHouse

@@ -4,11 +4,13 @@ import Calendar from '../../components/calendar/Calendar'
 import Event from '../../components/event/Event'
 import Dayjs from 'dayjs'
 import './styles.scss'
+import NewEvent from '../../components/event/NewEvent'
 
 const CalendarPage = () => {
 
   const [events, setEvents] = useState([])
   const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     API.request('events', {
