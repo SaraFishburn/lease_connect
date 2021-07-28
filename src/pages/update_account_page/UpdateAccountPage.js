@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import UpdateAccount from '../../components/user/UpdateAccount'
 import UpdatePassword from '../../components/user/UpdatePassword'
 import API from '../../helpers/api'
+import './styles.scss'
 
 const UpdateAccountPage = (props) => {
 
@@ -13,10 +14,10 @@ const UpdateAccountPage = (props) => {
   }, [])
 
   return (
-    <>
+    <div className="my-account-page">
       <UpdateAccount user={userData}/>
       <UpdatePassword />
-    </>
+    </div>
   )
 }
 
