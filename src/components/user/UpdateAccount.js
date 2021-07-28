@@ -2,15 +2,31 @@ import React, { useState, useEffect } from 'react'
 import API from '../../helpers/api';
 import './styles.scss'
 
-function NewUser() {
+function UpdateAccount(props) {
+    
     const defaultFormValues = {
         name: "",
         email: "",
         password: "",
         phone_number: "",
     }
+    const [formValues, setFormValues] = useState(defaultFormValues)
+    const [roleName, setRoleName] = useState('')
 
-    const [formValues, setFormValues] = useState(defaultFormValues);
+    useEffect(() => {
+        if(props.user.role_name === undefined){return}
+        let role = props.user.role_name
+        role = role.split(' ')
+        role[0] = role[0].charAt(0).toUpperCase() + role[0].slice(1)
+        if(role.length > 1){
+            role[1] = role[1].charAt(0).toUpperCase() + role[1].slice(1)
+        }
+        setRoleName(role.join(' '))
+    }, [props.user])
+
+    useEffect(() => {
+        console.log(roleName)
+    }, [roleName])
 
     const handleChange = (e) => {
         setFormValues({
@@ -35,7 +51,7 @@ function NewUser() {
     return (
         <div class="formDiv my-account-div">
             <form onSubmit={handleSubmit}>
-                <h1>My Account</h1>
+                <h1>My {roleName} Account</h1>
                 <label>Name :</label><input name='name' type="text" value={formValues.name} onChange={handleChange} />
                 <label>Email :</label><input name='email' type="text" value={formValues.email} onChange={handleChange} />
                 <label>Phone :</label><input name='phone_number' type="text" value={formValues.phone_number} onChange={handleChange} />
@@ -45,6 +61,4 @@ function NewUser() {
     )
 }
 
-
-
-export default NewUser
+export default UpdateAccount

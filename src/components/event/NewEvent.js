@@ -71,7 +71,7 @@ const NewEvent = (props) => {
     setDate('')
     setTime('')
     setOpenForm(false)
-    props.setEvents([...props.events, {...formValues, datetime}])
+    props.setEvents([...props.events, {...formValues, datetime, house:houses[formValues.house_id]}])
 }
   
 

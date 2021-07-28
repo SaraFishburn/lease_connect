@@ -13,6 +13,10 @@ const CalendarPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
+    console.log(events)
+  }, [events])
+
+  useEffect(() => {
     API.request('events', {
       headers: {
         "Content-Type": "application/json",
