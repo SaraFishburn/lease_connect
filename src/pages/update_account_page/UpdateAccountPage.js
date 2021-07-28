@@ -6,16 +6,9 @@ import './styles.scss'
 
 const UpdateAccountPage = (props) => {
 
-  const [userData, setUserData] = useState({})
-
-  useEffect(() => {
-    API.request("user")
-    .then(res => setUserData(res.data))
-  }, [])
-
   return (
     <div className="my-account-page">
-      <UpdateAccount user={userData}/>
+      <UpdateAccount user={props.user}/>
       <UpdatePassword />
     </div>
   )

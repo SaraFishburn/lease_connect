@@ -5,10 +5,10 @@ import './styles.scss'
 function UpdateAccount(props) {
     
     const defaultFormValues = {
-        name: "",
-        email: "",
+        name: props.user.name,
+        email: props.user.email,
         password: "",
-        phone_number: "",
+        phone_number: props.user.phone_number,
     }
     const [formValues, setFormValues] = useState(defaultFormValues)
     const [roleName, setRoleName] = useState('')

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import API from './helpers/api';
 import PrivateRoute from './components/PrivateRoute';
@@ -32,14 +33,17 @@ function App() {
   function userLoggedIn() {
     return Boolean(localStorage.getItem('authToken'))
   }
-
   const [user, setUser] = useState(userLoggedIn())
-  const [house, setHouse] = useState({})
+  const [userData, setUserData] = useState({})
+  const [role, setRole] = useState('')
 
   useEffect(() => {
     if(user) {
       API.request('user')
-      .then(res => setHouse(res.data.house))
+      .then(res => {
+        setUserData(res.data)
+        setRole(res.data.role_name)
+      })
     }
   }, [user])
 
@@ -53,40 +57,59 @@ function App() {
         )}
 
         <Switch>
-          {
-            user.role_name === "tenant" ? 
-
-            <PrivateRoute exact path="/">
-              <CalendarPage />
-            </PrivateRoute>
-            :
-            user.role_name === "property manager" ?
-            <PrivateRoute exact path="/">
-              <AdminHomePage />
-            </PrivateRoute>
-            :
-            <PrivateRoute exact path="/">
-              <PmHomePage />
-            </PrivateRoute>
-          }
-
-
-
-
-          <Route exact path="/test/:id">
-            <Test />
-          </Route>
 
           <PrivateRoute path="/calendar">
             <CalendarPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/create_account">
-            <CreateAccountPage />
+          <PrivateRoute path="/my_account">
+            <UpdateAccountPage user={userData}/>
           </PrivateRoute>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          {
+            role === "admin" ?
+            <>
+              <PrivateRoute exact path="/">
+                <AdminHomePage />
+              </PrivateRoute>
+
+              <PrivateRoute path="/create_account">
+                <CreateAccountPage />
+              </PrivateRoute>
+            </>
+            :
+            <Redirect to='/'/>
+          }
+
+
+          
+
+          
+  
+
+
           <PrivateRoute path="/documents">
-            <DocumentsPage {...house} />
+            <DocumentsPage {...userData.house} />
           </PrivateRoute>
 
           <PrivateRoute path="/create_property">
@@ -101,9 +124,7 @@ function App() {
             <UpdatePropertyPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/my_account">
-            <UpdateAccountPage />
-          </PrivateRoute>
+          
 
           <PrivateRoute path="/pm_home">
             <PmHomePage />
@@ -114,7 +135,7 @@ function App() {
           </PrivateRoute>
 
           <PublicRoute path="/login">
-            <LoginPage setUser={setUser} setHouse={setHouse} />
+            <LoginPage setUser={setUser} />
           </PublicRoute>
 
           <PrivateRoute path="/maintenance_page">
