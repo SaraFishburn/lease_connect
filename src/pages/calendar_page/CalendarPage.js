@@ -6,15 +6,11 @@ import Dayjs from 'dayjs'
 import './styles.scss'
 import NewEvent from '../../components/event/NewEvent'
 
-const CalendarPage = () => {
+const CalendarPage = (props) => {
 
   const [events, setEvents] = useState([])
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  useEffect(() => {
-    console.log(events)
-  }, [events])
 
   useEffect(() => {
     API.request('events', {
@@ -67,7 +63,12 @@ const CalendarPage = () => {
           </div>
         </div>
       </div>
-      <NewEvent events={events} setEvents={setEvents}/>
+      {
+        props.role === "tenant" ?
+        ''
+        :
+        <NewEvent events={events} setEvents={setEvents}/>
+      }
     </>
 
   )
