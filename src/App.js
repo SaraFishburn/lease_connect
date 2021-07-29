@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import API from './helpers/api';
 import PrivateRoute from './components/PrivateRoute';
@@ -32,16 +33,89 @@ function App() {
   function userLoggedIn() {
     return Boolean(localStorage.getItem('authToken'))
   }
-
   const [user, setUser] = useState(userLoggedIn())
-  const [house, setHouse] = useState({})
+  const [userData, setUserData] = useState({})
+  const [role, setRole] = useState('')
+  const [navList, setNavList] = useState([])
 
   useEffect(() => {
     if(user) {
       API.request('user')
-      .then(res => setHouse(res.data.house))
+      .then(res => {
+        setUserData(res.data)
+        setRole(res.data.role_name)
+      })
     }
   }, [user])
+
+  let pageList = [
+    {
+      name: "CALENDAR",
+      page: <CalendarPage />, 
+      path: "/calendar", 
+      auth: ["admin", "property manger"]
+    },
+    {
+      name: "CREATE ACCOUNT",
+      page: <CreateAccountPage />, 
+      path: "/create_account", 
+      auth: ["admin"]
+    },
+    {
+      name: "CREATE PROPERTY",
+      page: <CreatePropertyPage />, 
+      path: "/create_property", 
+      auth: ["admin", "property manager"]
+    },
+    {
+      name: "MAINTENANCE",
+      page: <MaintenanceDisplayPage />, 
+      path: "/maintenance", 
+      auth: ["tenant"]
+    },
+    {
+      name: null,
+      page: <MaintenanceRequestPage />, 
+      path: "/new_maintenance_request", 
+      auth: ["tenant"]
+    },
+    {
+      name: "DOCUMENTS",
+      page: <DocumentsPage {...userData.house}/> , 
+      path: "/documents", 
+      auth: ["tenant"]
+    },
+    {
+      name: null,
+      page: <PropertyShowPage />, 
+      path: "/houses/view/:id", 
+      auth: ["admin", "property manager"]
+    },
+    {
+      name: "MY ACCOUNT",
+      page: <UpdateAccountPage {...userData} />, 
+      path: "/my_account", 
+      auth: ["admin", "property manager", "tenant"]
+    },
+    {
+      name: null,
+      page: <UpdatePropertyPage />, 
+      path: "/houses/edit/:id", 
+      auth: ["admin", "property manager"]
+    }
+  ]
+
+  useEffect(() => {
+    let temp = []
+    pageList.map(page => (
+      page.name != null && page.auth.includes(role) ?
+      temp.push({name: page.name, path: page.path})
+      :
+      ''
+    ))
+    temp.unshift({name: "HOME", path: "/"})
+    setNavList(temp)
+  }, [role])
 
   return (
     <>
@@ -49,44 +123,86 @@ function App() {
       <BrowserRouter>
 
         {user && (
-          <Navbar />
+          <Navbar navList={navList}/>
         )}
 
         <Switch>
           {
-            user.role_name === "tenant" ? 
-
-            <PrivateRoute exact path="/">
-              <CalendarPage />
-            </PrivateRoute>
-            :
-            user.role_name === "property manager" ?
-            <PrivateRoute exact path="/">
-              <AdminHomePage />
-            </PrivateRoute>
-            :
-            <PrivateRoute exact path="/">
-              <PmHomePage />
-            </PrivateRoute>
+            pageList.map(page => (
+              page.auth.includes(role) ?
+              <PrivateRoute path={page.path}>
+                {page.page}
+              </PrivateRoute>
+              :
+              ''
+            ))
           }
 
+          <PrivateRoute path="/">
+            {
+              role === "tenant" ?
+              <CalendarPage />
+              :
+              role === "property manager" ?
+              <PmHomePage />
+              :
+              role === "admin" ?
+              <AdminHomePage />
+              :
+              ''
+            }
+          </PrivateRoute>
+
+          <PublicRoute path="/login">
+            <LoginPage setUser={setUser} />
+          </PublicRoute>
+        </Switch>
+
+
+        </BrowserRouter>
+    </>
 
 
 
-          <Route exact path="/test/:id">
-            <Test />
-          </Route>
 
-          <PrivateRoute path="/calendar">
+
+
+
+
+
+
+        /* <PrivateRoute path="/calendar">
             <CalendarPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/create_account">
-            <CreateAccountPage />
+          <PrivateRoute path="/my_account">
+            <UpdateAccountPage user={userData}/>
           </PrivateRoute>
 
-          <PrivateRoute path="/documents">
-            <DocumentsPage {...house} />
+          {
+            role === "admin" ?
+            <>
+              <PrivateRoute exact path="/">
+                <AdminHomePage />
+              </PrivateRoute>
+
+              <PrivateRoute path="/create_account">
+                <CreateAccountPage />
+              </PrivateRoute>
+            </>
+            :
+            <Redirect to='/'/>
+          } */
+
+
+          
+
+          
+  
+
+
+          /* <PrivateRoute path="/documents">
+            <DocumentsPage {...userData.house} />
           </PrivateRoute>
 
           <PrivateRoute path="/create_property">
@@ -101,9 +217,7 @@ function App() {
             <UpdatePropertyPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/my_account">
-            <UpdateAccountPage />
-          </PrivateRoute>
+          
 
           <PrivateRoute path="/pm_home">
             <PmHomePage />
@@ -113,9 +227,7 @@ function App() {
             <PropertyShowPage />
           </PrivateRoute>
 
-          <PublicRoute path="/login">
-            <LoginPage setUser={setUser} setHouse={setHouse} />
-          </PublicRoute>
+          
 
           <PrivateRoute path="/maintenance_page">
             <MaintenanceRequestPage/>
@@ -124,9 +236,7 @@ function App() {
           <PrivateRoute path="/maintenance_display_page">
             <MaintenanceDisplayPage/>
           </PrivateRoute>
-        </Switch>
-      </BrowserRouter>
-    </>
+       */
   );
 }
 

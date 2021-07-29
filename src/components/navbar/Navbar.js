@@ -5,18 +5,24 @@ import {
   Link
 } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [hamburgerOn, setHamburgerOn] = useState(false)
 
   return (
     <nav>
       <ul className={`nav-links ${hamburgerOn ? 'nav-links-show' : ''}`}>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/' >HOME</Link></li>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/calendar' >CALENDAR</Link></li>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_account' >CREATE ACCOUNT</Link></li>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/create_property' >CREATE PROPERTY</Link></li>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/admin_home' >ADMIN HOME</Link></li>
-        <li><Link className="link" onClick={() => setHamburgerOn(false)} to='/my_account' >MY ACCOUNT</Link></li>
+        {
+          props.navList.map(page => (
+            <li key={page.name}>
+              <Link 
+                className="link" 
+                onClick={() => setHamburgerOn(false)} 
+                to={page.path}> {page.name}
+              </Link>
+            </li>
+          ))
+
+        }
       </ul>
       <div className="navbar">
         <div className="nav-rectangle">
