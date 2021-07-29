@@ -25,11 +25,16 @@ const DocumentsPage = (props) => {
   return (
     <div className="documents-page">
       <h1>Documents</h1>
-      <CardContainer>
-        {documents.map((_, i) => (
-            <DocumentCard {...documents[documents.length - 1 - i]} />
-        ))}
-      </CardContainer>
+      {
+        documents.length == 0 ?
+        <div className="no-documents"> No documents to display </div>
+        :
+        <CardContainer>
+          {documents.map((_, i) => (
+              <DocumentCard {...documents[documents.length - 1 - i]} />
+          ))}
+        </CardContainer>
+      }
     </div>
   )
 }

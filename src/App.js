@@ -115,6 +115,7 @@ function App() {
     ))
     temp.unshift({name: "HOME", path: "/"})
     setNavList(temp)
+    console.log(role)
   }, [role])
 
   return (
