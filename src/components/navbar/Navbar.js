@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useHistory } from "react"
 import './styles.scss'
 
 import {
@@ -7,6 +7,11 @@ import {
 
 const Navbar = (props) => {
   const [hamburgerOn, setHamburgerOn] = useState(false)
+
+  const logOut = async () => {
+    localStorage.clear()
+    props.setUser(false)
+  }
 
   return (
     <nav>
@@ -23,6 +28,7 @@ const Navbar = (props) => {
           ))
 
         }
+        <li onClick={logOut}><span className="link">LOG OUT</span></li>
       </ul>
       <div className="navbar">
         <div className="nav-rectangle">
