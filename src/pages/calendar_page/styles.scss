@@ -3,7 +3,6 @@
   min-width: 306px;
   margin: auto;
   margin-top: 80px;
-  bottom: 0;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -11,6 +10,7 @@
 
   .calendar-tile-wrapper {
     width: fit-content;
+    margin-bottom: 100px;
 
     .ghost-tile {
       height: 0px;

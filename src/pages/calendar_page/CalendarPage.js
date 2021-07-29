@@ -13,18 +13,26 @@ const CalendarPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
-    API.request('events')
-    .then(res => setEvents(res.data))
-  }, [])
-
-  useEffect(() => {
     console.log(events)
   }, [events])
 
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth)
+    API.request('events', {
+      headers: {
+        "Content-Type": "application/json",
+      }
     })
+    .then(res => setEvents(res.data))
+    .catch(res => console.log(res))
+  }, [])
+
+  useEffect(() => {
+    const handleWindowWidthChange = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleWindowWidthChange)
+
+    return () => {
+      window.removeEventListener('resize', handleWindowWidthChange)
+    }
   }, [])
 
   function formattedEvents(events) {
@@ -56,7 +64,7 @@ const CalendarPage = () => {
           </div>
         </div>
       </div>
-      <NewEvent />
+      <NewEvent events={events} setEvents={setEvents}/>
     </>
 
   )

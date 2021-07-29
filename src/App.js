@@ -26,6 +26,7 @@ import {MaintenanceRequestPage} from './pages/maintenance_request_page/Maintenan
 import {MaintenanceDisplayPage} from "./pages/maintenance_display_page/MaintenanceDisplayPage";
 
 
+
 function App() {
 
   function userLoggedIn() {
@@ -42,12 +43,6 @@ function App() {
     }
   }, [user])
 
-
-
-  useEffect(() => {
-    console.log(house)
-  }, [house])
-
   return (
     <>
       <div className={`background-circles ${!user ? 'login-circle' : ''}`}></div>
@@ -58,9 +53,25 @@ function App() {
         )}
 
         <Switch>
-          <Route exact path="/">
-            <div></div>
-          </Route>
+          {
+            user.role_name === "tenant" ? 
+
+            <PrivateRoute exact path="/">
+              <CalendarPage />
+            </PrivateRoute>
+            :
+            user.role_name === "property manager" ?
+            <PrivateRoute exact path="/">
+              <AdminHomePage />
+            </PrivateRoute>
+            :
+            <PrivateRoute exact path="/">
+              <PmHomePage />
+            </PrivateRoute>
+          }
+
+
+
 
           <Route exact path="/test/:id">
             <Test />
