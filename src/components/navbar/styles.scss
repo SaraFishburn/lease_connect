@@ -111,8 +111,7 @@
     cursor: pointer;
 
     &:last-child {
-      position: absolute;
-      bottom: 0;
+      padding-top: 100px;
     }
 
     .link {
