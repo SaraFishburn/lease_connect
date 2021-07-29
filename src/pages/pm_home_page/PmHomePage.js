@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import {
+  Link
+} from "react-router-dom";
 import HouseCard from '../../components/house/HouseCard'
 import CardContainer from '../../components/card_container/CardContainer'
 import './styles.scss'
@@ -18,7 +21,7 @@ const PmHomePage = () => {
     <div className="pm-home-page">
       <CardContainer>
         {houses.map(house => (
-            <HouseCard {...house} />
+            <Link to={`houses/view/${house.id}`}><HouseCard {...house} /></Link>
           ))}
       </CardContainer>
     </div>

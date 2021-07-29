@@ -123,10 +123,14 @@ function App() {
       <BrowserRouter>
 
         {user && (
-          <Navbar navList={navList}/>
+          <Navbar navList={navList} setUser={setUser}/>
         )}
 
         <Switch>
+          <PublicRoute path="/login">
+            <LoginPage setUser={setUser} />
+          </PublicRoute>
+
           {
             pageList.map(page => (
               page.auth.includes(role) ?
@@ -153,9 +157,6 @@ function App() {
             }
           </PrivateRoute>
 
-          <PublicRoute path="/login">
-            <LoginPage setUser={setUser} />
-          </PublicRoute>
         </Switch>
 
 
