@@ -36,6 +36,7 @@ function App() {
   const [user, setUser] = useState(userLoggedIn())
   const [userData, setUserData] = useState({})
   const [role, setRole] = useState('')
+  const [navList, setNavList] = useState([])
 
   useEffect(() => {
     if(user) {
@@ -47,44 +48,136 @@ function App() {
     }
   }, [user])
 
+  let pageList = [
+    {
+      name: "CALENDAR",
+      page: <CalendarPage />, 
+      path: "/calendar", 
+      auth: ["admin", "property manger"]
+    },
+    {
+      name: "CREATE ACCOUNT",
+      page: <CreateAccountPage />, 
+      path: "/create_account", 
+      auth: ["admin"]
+    },
+    {
+      name: "CREATE PROPERTY",
+      page: <CreatePropertyPage />, 
+      path: "/create_property", 
+      auth: ["admin", "property manager"]
+    },
+    {
+      name: "MAINTENANCE",
+      page: <MaintenanceDisplayPage />, 
+      path: "/maintenance", 
+      auth: ["tenant"]
+    },
+    {
+      name: null,
+      page: <MaintenanceRequestPage />, 
+      path: "/new_maintenance_request", 
+      auth: ["tenant"]
+    },
+    {
+      name: "DOCUMENTS",
+      page: <DocumentsPage {...userData.house}/> , 
+      path: "/documents", 
+      auth: ["tenant"]
+    },
+    {
+      name: null,
+      page: <PropertyShowPage />, 
+      path: "/houses/view/:id", 
+      auth: ["admin", "property manager"]
+    },
+    {
+      name: "MY ACCOUNT",
+      page: <UpdateAccountPage {...userData} />, 
+      path: "/my_account", 
+      auth: ["admin", "property manager", "tenant"]
+    },
+    {
+      name: null,
+      page: <UpdatePropertyPage />, 
+      path: "/houses/edit/:id", 
+      auth: ["admin", "property manager"]
+    }
+  ]
+
+  useEffect(() => {
+    let temp = []
+    pageList.map(page => (
+      page.name != null && page.auth.includes(role) ?
+      temp.push({name: page.name, path: page.path})
+      :
+      ''
+    ))
+    temp.unshift({name: "HOME", path: "/"})
+    setNavList(temp)
+  }, [role])
+
   return (
     <>
       <div className={`background-circles ${!user ? 'login-circle' : ''}`}></div>
       <BrowserRouter>
 
         {user && (
-          <Navbar />
+          <Navbar navList={navList}/>
         )}
 
         <Switch>
+          {
+            pageList.map(page => (
+              page.auth.includes(role) ?
+              <PrivateRoute path={page.path}>
+                {page.page}
+              </PrivateRoute>
+              :
+              ''
+            ))
+          }
 
-          <PrivateRoute path="/calendar">
+          <PrivateRoute path="/">
+            {
+              role === "tenant" ?
+              <CalendarPage />
+              :
+              role === "property manager" ?
+              <PmHomePage />
+              :
+              role === "admin" ?
+              <AdminHomePage />
+              :
+              ''
+            }
+          </PrivateRoute>
+
+          <PublicRoute path="/login">
+            <LoginPage setUser={setUser} />
+          </PublicRoute>
+        </Switch>
+
+
+        </BrowserRouter>
+    </>
+
+
+
+
+
+
+
+
+
+
+        /* <PrivateRoute path="/calendar">
             <CalendarPage />
           </PrivateRoute>
 
           <PrivateRoute path="/my_account">
             <UpdateAccountPage user={userData}/>
           </PrivateRoute>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           {
             role === "admin" ?
@@ -99,7 +192,7 @@ function App() {
             </>
             :
             <Redirect to='/'/>
-          }
+          } */
 
 
           
@@ -108,7 +201,7 @@ function App() {
   
 
 
-          <PrivateRoute path="/documents">
+          /* <PrivateRoute path="/documents">
             <DocumentsPage {...userData.house} />
           </PrivateRoute>
 
@@ -134,9 +227,7 @@ function App() {
             <PropertyShowPage />
           </PrivateRoute>
 
-          <PublicRoute path="/login">
-            <LoginPage setUser={setUser} />
-          </PublicRoute>
+          
 
           <PrivateRoute path="/maintenance_page">
             <MaintenanceRequestPage/>
@@ -145,9 +236,7 @@ function App() {
           <PrivateRoute path="/maintenance_display_page">
             <MaintenanceDisplayPage/>
           </PrivateRoute>
-        </Switch>
-      </BrowserRouter>
-    </>
+       */
   );
 }
 

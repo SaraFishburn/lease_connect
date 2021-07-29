@@ -8,7 +8,7 @@ const UpdateAccountPage = (props) => {
 
   return (
     <div className="my-account-page">
-      <UpdateAccount user={props.user}/>
+      <UpdateAccount user={props}/>
       <UpdatePassword />
     </div>
   )

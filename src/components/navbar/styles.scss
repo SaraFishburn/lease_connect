@@ -111,7 +111,7 @@
 
     .link {
       color: white;
-      font-size:calc(2rem + 4vw);
+      font-size: max(calc(32px + 4vw), 85px);
       text-decoration: none;
       opacity: 0.9;
 
