@@ -55,12 +55,15 @@ const CalendarPage = () => {
         <div className="calendar-tile-wrapper">
           <Calendar {...{events: formattedEvents(events), setCurrentMonth, currentMonth }}/>
           <div className="event-tile-wrapper">
-            {events.map(event => {
+            {
+              events.length == 0 ?
+              <div className="event-tile no-events">{`No events to display for ${Dayjs(currentMonth).format('MMMM')}`}</div>
+              :
+              events.map(event => {
               if (Dayjs(event.datetime).format('MM-YYYY') == Dayjs(currentMonth).format('MM-YYYY')) {
                 return <Event {...{event}} />
               }
             })}
-            <div className="event-tile ghost-tile"></div>
           </div>
         </div>
       </div>

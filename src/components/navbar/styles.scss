@@ -93,7 +93,7 @@
   flex-direction: column;
   
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 60px);
 
   padding: 0;
   padding-top: 100px;
@@ -111,7 +111,12 @@
     cursor: pointer;
 
     &:last-child {
-      padding-top: 100px;
+      position: absolute;
+      bottom: 40px;
+
+      span {
+        font-size: calc(16px + 1vw) !important;
+      }
     }
 
     .link {

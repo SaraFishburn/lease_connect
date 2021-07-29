@@ -12,9 +12,11 @@
     width: fit-content;
     margin-bottom: 100px;
 
-    .ghost-tile {
-      height: 0px;
-      opacity: 0;
+    .no-events {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
     }
   }
 }

@@ -8,7 +8,7 @@ function NewUser() {
         email: "",
         password: "",
         phone_number: "",
-        role_name: "Tenant",
+        role_name: "tenant",
         house_id: "",
         houses: [],
     }
