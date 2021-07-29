@@ -10,7 +10,7 @@ export default function MaintenanceDisplay(props) {
 
         <div className="formDiv">
             <form>
-                <h1>Maintenance</h1>
+                <h1>Maintenance Jobs</h1>
 
                 <input type="submit" value="New Request"/>
                 <div className="house-card">
@@ -58,5 +58,4 @@ export default function MaintenanceDisplay(props) {
                 </div>
             </form>
         </div>
-    )
-}
+    )}
