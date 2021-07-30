@@ -24,7 +24,7 @@ export const MaintenanceDisplayPage = (props) => {
 
 
             {maintenances.map((_, i) => (
-                <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} />
+                <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} house_id={props.id}/>
             ))}
 
 

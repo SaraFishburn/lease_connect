@@ -42,6 +42,10 @@ const PropertyShowPage = (props) => {
     
     API.request(`houses/${id}/maintenances`)
     .then(res => setMaintenances(res.data))
+
+    API.request(`houses/${id}`)
+        .then (res => res.data)
+        .then (data => setHouseData(data))
   }, [])
 
   function uploadImage() {
@@ -79,11 +83,9 @@ const PropertyShowPage = (props) => {
     .catch(res => console.log(res.data))
   }
 
-  useEffect(() => {
-    API.request(`houses/${id}`)
-        .then (res => res.data)
-        .then (data => setHouseData(data))
-  }, [])
+  const updateStatus = (i, newStatus) => {
+    setMaintenances([...maintenances.slice(0, i), {...maintenances[i], status: newStatus}, ...maintenances.slice(i + 1)])
+  }
 
   return (
     <div className="house-show">
@@ -125,7 +127,7 @@ const PropertyShowPage = (props) => {
       </CardContainer>
       <CardContainer heading="Maintenance">
         {maintenances.map((_, i) => (
-            <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} />
+            <MaintenanceDisplay key={maintenances[maintenances.length - 1 - i].id} updateStatus={(newStatus) => updateStatus(maintenances.length - 1 - i, newStatus)} {...maintenances[maintenances.length - 1 - i]} />
         ))}
       </CardContainer>
     </div>
