@@ -15,13 +15,17 @@ export const MaintenanceDisplayPage = (props) => {
         .then(res => setMaintenanceRequests(res.data))
     },[props])
 
+    console.log("Down")
+    console.log(maintenance)
+    console.log("Up")
+
     return (
         <div className="maintenance-display-page">
-        {/*<h1>Maintenance</h1>*/}
-        {maintenance.map((_, i) => (
-            <MaintenanceDisplay {...maintenance[maintenance.length - 1 - i]} />
-        ))}
-    </div>
+            {/*<h1>Maintenance</h1>*/}
+            {maintenance.map((_, i) => (
+                <MaintenanceDisplay {...maintenance[maintenance.length - 1 - i]} />
+            ))}
+        </div>
         // <MaintenanceDisplay/>
     )
 }
