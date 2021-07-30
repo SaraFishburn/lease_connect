@@ -28,7 +28,7 @@ const DocumentUpload = (props) => {
             </div>
             <div className="document-preview">
                 <h1>Uploaded DocumentUpload will be displayed here</h1>
-                <img src={props.url} width="100rem"/>
+                <img src={props.url} width="100rem" alt='upload preview'/>
             </div>
         </div>
         </div>

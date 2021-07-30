@@ -116,7 +116,7 @@ const PropertyShowPage = (props) => {
           </input>
         </form>
         {documents.map((_, i) => (
-          <DocumentCard {...documents[documents.length - 1 - i]} />
+          <DocumentCard key={i} {...documents[documents.length - 1 - i]} />
         ))}
       </CardContainer>
       <CardContainer heading="Maintenance">

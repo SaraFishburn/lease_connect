@@ -29,7 +29,7 @@ function NewDocument() {
     const handleSubmit = async (event) => {
         event.preventDefault() 
 
-        const res = await API.request("documents", {
+        await API.request("documents", {
             method: "POST",
             data: JSON.stringify(formValues),
             headers: {
