@@ -21,10 +21,15 @@ export const MaintenanceDisplayPage = (props) => {
 
     return (
         <div className="maintenance-display-page">
-            {/*<h1>Maintenance</h1>*/}
+            <h1 className="maintenance-display-title">Maintenance</h1>
+            <a className="new-request-button" href={"/new_maintenance_request"}>New request</a>
+
+
             {maintenance.map((_, i) => (
                 <MaintenanceDisplay {...maintenance[maintenance.length - 1 - i]} />
             ))}
+
+
         </div>
         // <MaintenanceDisplay/>
     )

@@ -6,23 +6,21 @@ import bxImageAlt from "@iconify-icons/bx/bx-image-alt";
 
 export default function MaintenanceDisplay(props) {
 
+    console.log(props)
+
     return (
 
         <div className="formDiv">
             <form>
-                <h1>Maintenance Jobs</h1>
-
-                <input type="submit" value="New Request"/>
                 <div className="house-card">
                     <div className="card-content">
-                        <h1>Dishwasher</h1>
-                        <div>14/07/2021</div>
-                        <div>The door on the dishwasher won’t
-                            close properly.</div>
+                        <h1>{props.title}</h1>
+                        <div>{new Date(props.updated_at).toDateString()}</div>
+                        <div>{props.description}</div>
                         <div className="card-middle">
                             <div className='img-frame'>
                                 <Icon icon={bxImageAlt} className="img-placeholder" color="#2A2B77"/>
-                                <img src={""} height="150px"/>
+                                <img src={props.image_url} height="150px"/>
                             </div>
                             <div>
                                 <div className="radio-buttons" name='role_name'>
