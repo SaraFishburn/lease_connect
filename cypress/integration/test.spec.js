@@ -1,6 +1,9 @@
 import {useContext} from "react"
 
 describe ("Test", () => {
+    beforeEach(() => {
+        cy.intercept("http://localhost:4000/api/user", {"id":1,"name":"Test User","email":"sarafishburn@sara.com","phone_number":"0422 222 222","role_name":"admin","house_id":10,"created_at":"2021-07-30T01:55:15.574Z","updated_at":"2021-07-30T01:55:15.574Z","house":{"id":10,"address":"69A Wentworth Rd, Vaucluse NSW 2030","title":"Vaucluse Family Retreat","image_url":"https://res.cloudinary.com/rafaelmellocloud/image/upload/v1627102938/1_ot31b0.jpg","created_at":"2021-07-30T01:55:14.822Z","updated_at":"2021-07-30T01:55:14.822Z"}})
+    })
     
     beforeEach(() => {
         window.localStorage.setItem("authToken", "foo")
@@ -83,8 +86,8 @@ describe ("Test", () => {
                 cy.get('input[name=email]').type('test@test.com')
                 cy.get('input[name=password]').type('test')
                 cy.get('input[name=phone_number]').type('044444444')
-                cy.get('select').select("1")
-                cy.get('option').should('have.length', 5)
+                cy.get('select').select("10")
+                cy.get('option').should('have.length', 6)
                 cy.get('option:nth-child(2)')
                 cy.get('input[type=submit]').click()
                 cy.on('window:alert', cy.stub().as('alert'))
