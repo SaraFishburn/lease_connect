@@ -7,6 +7,7 @@ import CardContainer from '../../components/card_container/CardContainer'
 import HouseCard from '../../components/house/HouseCard'
 import UserCard from '../../components/user/UserCard'
 import DocumentCard from '../../components/documents/DocumentCard'
+import MaintenanceDisplay from '../../components/maintenance_display/MaintenanceDisplay'
 
 import { Icon } from '@iconify/react';
 import cloudUpload from '@iconify-icons/carbon/cloud-upload';
@@ -19,6 +20,7 @@ const PropertyShowPage = (props) => {
 
   const [image, setImage ] = useState("");
   const [documents, setDocuments] = useState([])
+  const [maintenances, setMaintenances] = useState([])
   const inputRef = useRef()
 
   const { id } = useParams()
@@ -37,6 +39,9 @@ const PropertyShowPage = (props) => {
   useEffect(() => {
     API.request(`houses/${id}/documents`)
     .then(res => setDocuments(res.data))
+    
+    API.request(`houses/${id}/maintenances`)
+    .then(res => setMaintenances(res.data))
   }, [])
 
   function uploadImage() {
@@ -116,6 +121,11 @@ const PropertyShowPage = (props) => {
         </form>
         {documents.map((_, i) => (
           <DocumentCard {...documents[documents.length - 1 - i]} />
+        ))}
+      </CardContainer>
+      <CardContainer heading="Maintenance">
+        {maintenances.map((_, i) => (
+            <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} />
         ))}
       </CardContainer>
     </div>
