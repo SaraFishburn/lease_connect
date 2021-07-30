@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import API from '../../helpers/api';
 import './styles.scss'
 const UpdatePassword = () => {
@@ -19,7 +19,7 @@ const UpdatePassword = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await API.request("users", {
+        await API.request("users", {
             method: "PATCH",
             data: JSON.stringify(formValues),
             headers: {
@@ -32,7 +32,7 @@ const UpdatePassword = () => {
     }
 
     return (
-        <div class="formDiv update-password-div">
+        <div className="formDiv update-password-div">
             <form onSubmit={handleSubmit}>
                 <h1>Update Password</h1>
                 <label>Current Password:</label><input name='password' type="password" value={formValues.name} onChange={handleChange} />

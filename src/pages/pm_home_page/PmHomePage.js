@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  useHistory
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import HouseCard from '../../components/house/HouseCard'
 import CardContainer from '../../components/card_container/CardContainer'
 import './styles.scss'
@@ -21,7 +19,7 @@ const PmHomePage = () => {
     <div className="pm-home-page">
       <CardContainer>
         {houses.map(house => (
-            <HouseCard {...house} onClick={() => history.push(`houses/view/${house.id}`)}/>
+            <HouseCard key={house.id} {...house} onClick={() => history.push(`houses/view/${house.id}`)}/>
           ))}
       </CardContainer>
     </div>

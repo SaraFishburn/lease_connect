@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  useHistory
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import CardContainer from '../../components/card_container/CardContainer'
 import UserCard from '../../components/user/UserCard'
@@ -44,13 +42,17 @@ const AdminHomePage = () => {
     <>
       <CardContainer heading={"Property Managers"}>
         {users.map((user, i) => (
-          user.role_name === "property manager" && <UserCard {...user} deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
+          user.role_name === "property manager" && 
+          <UserCard {...user} 
+            key={user.id} 
+            deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
         ))}
       </CardContainer>
     
       <CardContainer heading={"Properties"}>
         {houses.map((house, i) => (
           <HouseCard {...house} 
+            key={house.id}
             deleteHouse={() => handleDelete(setHouses, i, house.id, 'houses')} 
             onClick={() => history.push(`houses/view/${house.id}`)}/>
         ))}
@@ -58,7 +60,10 @@ const AdminHomePage = () => {
 
       <CardContainer heading={"Tenants"}>
         {users.map((user, i) => (
-          user.role_name === "tenant" && <UserCard {...user} deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
+          user.role_name === "tenant" && 
+          <UserCard {...user} 
+          key={user.id}
+          deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
         ))}
       </CardContainer>
     </>

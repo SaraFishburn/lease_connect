@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react'
 import SimpleReactCalendar from 'simple-react-calendar'
 import Day from 'simple-react-calendar/lib/RenderPropsComponents/Day'
 import DayOfWeek from 'simple-react-calendar/lib/RenderPropsComponents/DayOfWeek'

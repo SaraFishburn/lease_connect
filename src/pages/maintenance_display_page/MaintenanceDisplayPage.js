@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import MaintenanceDisplay from "../../components/maintenance_display/MaintenanceDisplay";
 import './styles.scss';
 import API from "../../helpers/api";
-import CardContainer from "../../components/card_container/CardContainer";
 
 export const MaintenanceDisplayPage = (props) => {
 
@@ -11,11 +10,7 @@ export const MaintenanceDisplayPage = (props) => {
     useEffect(() => {
         API.request(`houses/${props.id}/maintenances`)
         .then(res => setMaintenances(res.data))
-    },[])
-
-    console.log("Down")
-    console.log(maintenances)
-    console.log("Up")
+    },[props.id])
 
     return (
         <div className="maintenance-display-page">
@@ -24,12 +19,11 @@ export const MaintenanceDisplayPage = (props) => {
 
 
             {maintenances.map((_, i) => (
-                <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} house_id={props.id}/>
+                <MaintenanceDisplay key={i} {...maintenances[maintenances.length - 1 - i]} house_id={props.id}/>
             ))}
 
 
         </div>
-        // <MaintenanceDisplay/>
     )
 }
 

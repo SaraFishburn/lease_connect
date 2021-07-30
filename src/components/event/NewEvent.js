@@ -13,8 +13,8 @@ const NewEvent = (props) => {
   const eventFormRef = useRef()
 
   const defaultFormValues = {
-    event_type: "",
-    house_id: "",
+    event_type: "Select Event Type",
+    house_id: "Select Property",
   }
 
   const [formValues, setFormValues] = useState(defaultFormValues)
@@ -50,7 +50,7 @@ const NewEvent = (props) => {
   }, [])
   
   const setDatetime = () => {
-    if(formValues.date == "" || formValues.time == "") return
+    if(formValues.date === "" || formValues.time === "") return
 
     Dayjs.extend(customParseFormat)
     return Dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm').toISOString()
@@ -60,12 +60,12 @@ const NewEvent = (props) => {
     e.preventDefault()
     const datetime = setDatetime()
 
-    const res = await API.request("events", {
+    await API.request("events", {
         method: "POST",
         data: {...formValues, datetime: datetime},
         headers: {
             "Content-Type": "application/json",
-        },
+        }
     });
     setFormValues(defaultFormValues)
     setDate('')
@@ -82,16 +82,16 @@ const NewEvent = (props) => {
         <form onSubmit={handleSubmit}>
 
           <select name='house_id' value={formValues.house_id} onChange={handleChange}>
-            <option value='' disabled selected>Select Property</option>
+            <option value='Select Property' disabled>Select Property</option>
             {houses.map(house =>
-                <option value={house.id}>{house.title}</option>
+                <option key={house.id} value={house.id}>{house.title}</option>
             )}
           </select>
 
           <select name='event_type' value={formValues.event_type} onChange={handleChange}>
-            <option value='' disabled selected>Select Event Type</option>
+            <option value='Select Event Type' disabled >Select Event Type</option>
             {eventTypes.map(type =>
-              <option value={type}>{`${type.charAt(0).toUpperCase()}${type.slice(1)}`}</option>
+              <option key={type} value={type}>{`${type.charAt(0).toUpperCase()}${type.slice(1)}`}</option>
             )}
           </select>
 

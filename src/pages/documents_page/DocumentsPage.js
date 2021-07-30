@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react"
-import {
-  Link,
-} from "react-router-dom";
 
 import DocumentCard from "../../components/documents/DocumentCard"
 import CardContainer from "../../components/card_container/CardContainer"
@@ -25,12 +22,12 @@ const DocumentsPage = (props) => {
     <div className="documents-page">
       <h1>Documents</h1>
       {
-        documents.length == 0 ?
+        documents.length === 0 ?
         <div className="no-documents"> No documents to display </div>
         :
         <CardContainer>
           {documents.map((_, i) => (
-              <DocumentCard {...documents[documents.length - 1 - i]} />
+              <DocumentCard key={i} {...documents[documents.length - 1 - i]} />
           ))}
         </CardContainer>
       }
