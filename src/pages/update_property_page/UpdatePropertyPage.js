@@ -116,8 +116,8 @@ const UpdatePropertyPage = () => {
       url={houseData.property.image_url}>
 
       <CardContainer heading={"Tenants"}>
-        {houseData.tenants.map(tenant => (
-          <UserCard {...tenant} onDelete={deleteUser} />
+        {houseData.tenants.map((tenant) => (
+          <UserCard {...tenant} deleteUser={() => deleteUser(tenant.id)} />
         ))}
       </CardContainer>
       <select name='tenant_id' value={''} onChange={addTenant}>

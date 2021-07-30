@@ -51,7 +51,7 @@ function App() {
   let pageList = [
     {
       name: "CALENDAR",
-      page: <CalendarPage />, 
+      page: <CalendarPage role={role} />, 
       path: "/calendar", 
       auth: ["admin", "property manger"]
     },
@@ -107,7 +107,7 @@ function App() {
 
   useEffect(() => {
     let temp = []
-    pageList.map(page => (
+    pageList.forEach(page => (
       page.name != null && page.auth.includes(role) ?
       temp.push({name: page.name, path: page.path})
       :
@@ -115,7 +115,6 @@ function App() {
     ))
     temp.unshift({name: "HOME", path: "/"})
     setNavList(temp)
-    console.log(role)
   }, [role])
 
   return (
@@ -143,10 +142,10 @@ function App() {
             ))
           }
 
-          <PrivateRoute path="/">
+          <PrivateRoute exact path="/">
             {
               role === "tenant" ?
-              <CalendarPage />
+              <CalendarPage role={role}/>
               :
               role === "property manager" ?
               <PmHomePage />
@@ -157,88 +156,11 @@ function App() {
               ''
             }
           </PrivateRoute>
-
         </Switch>
 
 
         </BrowserRouter>
     </>
-
-
-
-
-
-
-
-
-
-
-        /* <PrivateRoute path="/calendar">
-            <CalendarPage />
-          </PrivateRoute>
-
-          <PrivateRoute path="/my_account">
-            <UpdateAccountPage user={userData}/>
-          </PrivateRoute>
-
-          {
-            role === "admin" ?
-            <>
-              <PrivateRoute exact path="/">
-                <AdminHomePage />
-              </PrivateRoute>
-
-              <PrivateRoute path="/create_account">
-                <CreateAccountPage />
-              </PrivateRoute>
-            </>
-            :
-            <Redirect to='/'/>
-          } */
-
-
-          
-
-          
-  
-
-
-          /* <PrivateRoute path="/documents">
-            <DocumentsPage {...userData.house} />
-          </PrivateRoute>
-
-          <PrivateRoute path="/create_property">
-            <CreatePropertyPage />
-          </PrivateRoute>
-
-          <PrivateRoute path="/admin_home">
-            <AdminHomePage />
-          </PrivateRoute>
-
-          <PrivateRoute path="/houses/edit/:id">
-            <UpdatePropertyPage />
-          </PrivateRoute>
-
-          
-
-          <PrivateRoute path="/pm_home">
-            <PmHomePage />
-          </PrivateRoute>
-
-          <PrivateRoute path="/houses/view/:id">
-            <PropertyShowPage />
-          </PrivateRoute>
-
-          
-
-          <PrivateRoute path="/maintenance_page">
-            <MaintenanceRequestPage/>
-          </PrivateRoute>
-
-          <PrivateRoute path="/maintenance_display_page">
-            <MaintenanceDisplayPage/>
-          </PrivateRoute>
-       */
   );
 }
 

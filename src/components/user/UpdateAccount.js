@@ -5,28 +5,24 @@ import './styles.scss'
 function UpdateAccount(props) {
     
     const defaultFormValues = {
-        name: props.name,
-        email: props.email,
+        name: props.user.name,
+        email: props.user.email,
         password: "",
-        phone_number: props.phone_number,
+        phone_number: props.user.phone_number,
     }
     const [formValues, setFormValues] = useState(defaultFormValues)
     const [roleName, setRoleName] = useState('')
 
     useEffect(() => {
-        if(props.role_name === undefined){return}
-        let role = props.role_name
+        if(props.user.role_name === undefined){return}
+        let role = props.user.role_name
         role = role.split(' ')
         role[0] = role[0].charAt(0).toUpperCase() + role[0].slice(1)
         if(role.length > 1){
             role[1] = role[1].charAt(0).toUpperCase() + role[1].slice(1)
         }
         setRoleName(role.join(' '))
-    }, [props])
-
-    useEffect(() => {
-        console.log(roleName)
-    }, [roleName])
+    }, [props.user])
 
     const handleChange = (e) => {
         setFormValues({

@@ -21,9 +21,9 @@ export default function UserCard(props) {
             <div
               class="card-icons"
               onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}> 
+              onMouseLeave={() => setHover(false)}
+              onClick={props.deleteUser}>
               <Icon
-                onClick={() => props.onDelete ? props.onDelete(props.id) : () => {}}
                 className={`delete-icon${hover ? '-white' : ''}`}
                 icon={delete24Regular} 
                 color={hover ? "#FFFFFF" : "#2A2B77"} />
@@ -32,23 +32,3 @@ export default function UserCard(props) {
   
     )
 }
-
-// var Link = React.createClass({
-//     getInitialState: function(){
-//       return {hover: false}
-//     },
-//     toggleHover: function(){
-//       this.setState({hover: !this.state.hover})
-//     },
-//     render: function() {
-//       var linkStyle;
-//       if (this.state.hover) {
-//         linkStyle = {backgroundColor: 'red'}
-//       } else {
-//         linkStyle = {backgroundColor: 'blue'}
-//       }
-//       return(
-//         <div>
-//           <a style={linkStyle} onMouseEnter={this.toggleHover} onMouseLeave={this.toggleHover}>Link</a>
-//         </div>
-//       )

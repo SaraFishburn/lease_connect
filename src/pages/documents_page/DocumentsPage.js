@@ -14,7 +14,6 @@ const DocumentsPage = (props) => {
   const [documents, setDocuments] = useState([])
 
   useEffect(() => {
-    console.log(props)
     if(!props.id) return
 
     API.request(`houses/${props.id}/documents`)
