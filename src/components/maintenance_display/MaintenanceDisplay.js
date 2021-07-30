@@ -32,7 +32,7 @@ export default function MaintenanceDisplay(props) {
                         </div>
                         <div>
                             <div className="radio-buttons" name='role_name'>
-                                <label htmlFor="tenant_radio_button">
+                                <label htmlFor="tenant_radio_button" className="status_displayer">
                                     <input 
                                         id="tenant_radio_button" 
                                         name='role_name' 
@@ -47,7 +47,7 @@ export default function MaintenanceDisplay(props) {
                                 </label>
                             </div>
                             <div className="radio-buttons" name='role_name'>
-                                <label htmlFor="pm_radio_button">
+                                <label htmlFor="pm_radio_button" className="status_displayer">
                                     <input 
                                         id="pm_radio_button" 
                                         name='role_name' 
@@ -62,7 +62,7 @@ export default function MaintenanceDisplay(props) {
                                 </label>
                             </div>
                             <div className="radio-buttons" name='role_name'>
-                                <label htmlFor="pm_radio_button">
+                                <label htmlFor="pm_radio_button" className="status_displayer">
                                     <input
                                         id="pm_radio_button"
                                         name='role_name'
