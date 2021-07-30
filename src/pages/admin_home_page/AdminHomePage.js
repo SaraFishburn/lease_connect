@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Link
+  useHistory
 } from "react-router-dom";
 
 import CardContainer from '../../components/card_container/CardContainer'
@@ -10,6 +10,7 @@ import './styles.scss'
 import API from '../../helpers/api';
 
 const AdminHomePage = () => {
+  const history = useHistory()
 
   const [users, setUsers] = useState([])
   const [houses, setHouses] = useState([])
@@ -26,23 +27,38 @@ const AdminHomePage = () => {
           .then (data => setHouses(data))
   }, [])
 
+  const handleDelete = (action, i, id, path) => {
+    if (!window.confirm('Are you sure?')) return
+
+    API.request(`${path}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+      action(array => [...array.slice(0, i), ...array.slice(i + 1)])
+    }).catch(err => alert(err.response.data.error))
+  }
+
   return (
     <>
       <CardContainer heading={"Property Managers"}>
-        {users.map(user => (
-          user.role_name === "property manager" && <UserCard {...user} />
+        {users.map((user, i) => (
+          user.role_name === "property manager" && <UserCard {...user} deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
         ))}
       </CardContainer>
     
       <CardContainer heading={"Properties"}>
-        {houses.map(house => (
-          <Link to={`houses/view/${house.id}`}><HouseCard {...house} /></Link>
+        {houses.map((house, i) => (
+          <HouseCard {...house} 
+            deleteHouse={() => handleDelete(setHouses, i, house.id, 'houses')} 
+            onClick={() => history.push(`houses/view/${house.id}`)}/>
         ))}
       </CardContainer>
 
       <CardContainer heading={"Tenants"}>
-        {users.map(user => (
-          user.role_name === "tenant" && <UserCard {...user} />
+        {users.map((user, i) => (
+          user.role_name === "tenant" && <UserCard {...user} deleteUser={() => handleDelete(setUsers, i, user.id, 'users')} />
         ))}
       </CardContainer>
     </>

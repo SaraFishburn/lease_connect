@@ -14,7 +14,7 @@ export default function HouseCard(props) {
     const [deleteHover, setDeleteHover] = useState()
 
     return (
-        <div class="house-card">
+        <div class="house-card" onClick={props.onClick}>
             <div class="card-content">
                 <h1>{props.title}</h1>
                 <div class="card-middle">
@@ -42,9 +42,12 @@ export default function HouseCard(props) {
                     className="delete-icon-div"
                     onMouseEnter={() => setDeleteHover(true)}
                     onMouseLeave={() => setDeleteHover(false)}
+                    onClick={(e) => {
+                        e.stopPropagation()
+                        props.deleteHouse()
+                    }}
                 >
                 <Icon
-                    onClick={() => props.onDelete ? props.onDelete(props.id) : () => {}}
                     className={`delete-icon${deleteHover ? '-white' : ''}`}
                     icon={delete24Regular} 
                     color={deleteHover ? "#FFFFFF" : "#2A2B77"}
