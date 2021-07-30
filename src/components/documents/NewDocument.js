@@ -8,7 +8,6 @@ function NewDocument() {
         title: "",
         document_url: "",
         house_id: "",
-        pages: []
     }
 
     const [formValues, setFormValues] = useState(defaultFormValues);

@@ -1,54 +1,57 @@
-.radio-buttons {
-  display: flex;
-  width: 10vw;
-  max-width: 500px;
-  flex-direction: row !important;
-  align-items: flex-start;
-}
-input[type=radio] {
-  height: 20px !important;
-  width: 20px !important;
-  box-shadow: none !important;
-  position: fixed;
-  opacity: 0;
-  margin: 0;
-  cursor: pointer;
+.maintenance-display-page {
 
-  &:checked + div {
-    .selected-fill {
-      background-color: var(--mid-blue);
+  .radio-buttons {
+    display: flex;
+    width: 10vw;
+    max-width: 500px;
+    flex-direction: row !important;
+    align-items: flex-start;
+  }
+  input[type=radio] {
+    height: 20px !important;
+    width: 20px !important;
+    box-shadow: none !important;
+    position: fixed;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  
+    &:checked + div {
+      .selected-fill {
+        background-color: var(--mid-blue);
+      }
+  
     }
-
   }
-}
-
-.custom-radio {
-  height: 21px !important;
-  width: 21px !important;
-  border-radius: 50%;
-  border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
-  box-shadow: var(--dp4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  margin-right: 10px;
-
-  .selected-fill {
-    height: 15px;
-    width: 15px;
+  
+  .custom-radio {
+    height: 21px !important;
+    width: 21px !important;
     border-radius: 50%;
+    border: 1px solid rgba(var(--dark-blue-rgb), 0.2);
+    box-shadow: var(--dp4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-right: 10px;
+  
+    .selected-fill {
+      height: 15px;
+      width: 15px;
+      border-radius: 50%;
+    }
   }
-}
-
-label {
-  display: flex;
-  width: fit-content !important;
-  align-items: center;
-  margin: 0 20px;
-  font-size: 14px !important;
-
-  &:last-child {
-    margin-left: 0;
+  
+  label {
+    display: flex;
+    width: fit-content !important;
+    align-items: center;
+    margin: 0 20px;
+    font-size: 14px !important;
+  
+    &:last-child {
+      margin-left: 0;
+    }
   }
 }
