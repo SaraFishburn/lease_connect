@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import API from './helpers/api';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
@@ -19,7 +14,6 @@ import PropertyShowPage from './pages/property_show_page/PropertyShowPage';
 import DocumentsPage from './pages/documents_page/DocumentsPage';
 
 import Navbar from './components/navbar/Navbar';
-import Test from './pages/Test';
 import './global.scss'
 import AdminHomePage from './pages/admin_home_page/AdminHomePage';
 import UpdatePropertyPage from './pages/update_property_page/UpdatePropertyPage';
@@ -115,6 +109,8 @@ function App() {
     ))
     temp.unshift({name: "HOME", path: "/"})
     setNavList(temp)
+    // If pageList is added to useEffect dependencies it causes an infinite re-render loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role])
 
   return (
@@ -132,9 +128,9 @@ function App() {
           </PublicRoute>
 
           {
-            pageList.map(page => (
+            pageList.map((page, i) => (
               page.auth.includes(role) ?
-              <PrivateRoute path={page.path}>
+              <PrivateRoute key={i} path={page.path}>
                 {page.page}
               </PrivateRoute>
               :

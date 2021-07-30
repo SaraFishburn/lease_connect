@@ -1,9 +1,7 @@
-import { useState, useHistory } from "react"
+import { useState } from "react"
 import './styles.scss'
 
-import {
-  Link
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const [hamburgerOn, setHamburgerOn] = useState(false)
@@ -34,7 +32,7 @@ const Navbar = (props) => {
         <div className="nav-rectangle">
           <div className="nav-circle">
             <Link onClick={() => setHamburgerOn(false)} to='/'>
-              <img src="https://res.cloudinary.com/sazza/image/upload/v1627021393/color_small_logo_ck2kt5.svg" alt="" />
+              <img src="https://res.cloudinary.com/sazza/image/upload/v1627021393/color_small_logo_ck2kt5.svg" alt="lease connect logo and home button" />
             </Link>
           </div>
           

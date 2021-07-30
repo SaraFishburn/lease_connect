@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { Icon } from '@iconify/react';
 import caretDown from '@iconify-icons/ci/caret-down';
 import caretRight from '@iconify-icons/ci/caret-right';

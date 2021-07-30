@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import {
-  useParams
-} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import CardContainer from '../../components/card_container/CardContainer'
 import HouseCard from '../../components/house/HouseCard'
@@ -33,8 +31,39 @@ const PropertyShowPage = (props) => {
 
   useEffect(() => {
     if(image === "") {return}
-    handleSubmit()
-  }, [image])
+    uploadImage()
+    .then(url => {
+      API.request(`houses/${id}/documents`, {
+        method: "POST",
+        data: {
+          title: image.name.split('.')[0],
+          document_url: url
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
+        setDocuments(documents => [...documents, {title: image.name.split('.')[0], document_url: url}])
+      })
+    })
+    .catch(res => console.log(res.data))
+
+    function uploadImage() {
+      if(image === "") {
+        return new Promise((_, rej) => rej("No document Supplied! :'("))
+      }
+      const data = new FormData()
+      data.append("file", image)
+      data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
+      data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
+      return fetch( process.env.REACT_APP_IMAGE_FETCH , {
+        method:"post",
+        body: data
+      })
+      .then(res => res.json())
+      .then(image_data => image_data.url.replace('.pdf', '.png'))
+    }
+  }, [image, id])
 
   useEffect(() => {
     API.request(`houses/${id}/documents`)
@@ -44,44 +73,9 @@ const PropertyShowPage = (props) => {
     .then(res => setMaintenances(res.data))
 
     API.request(`houses/${id}`)
-        .then (res => res.data)
-        .then (data => setHouseData(data))
-  }, [])
-
-  function uploadImage() {
-    if(image === "") {
-      return new Promise((_, rej) => rej("No document Supplied! :'("))
-    }
-    const data = new FormData()
-    data.append("file", image)
-    data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
-    data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
-    return fetch( process.env.REACT_APP_IMAGE_FETCH , {
-        method:"post",
-        body: data
-    })
-    .then(res => res.json())
-    .then(image_data => image_data.url.replace('.pdf', '.png'))
-  }
-
-  const handleSubmit = () => {
-    uploadImage()
-    .then(url => {
-        API.request(`houses/${id}/documents`, {
-            method: "POST",
-            data: {
-              title: image.name.split('.')[0],
-              document_url: url
-            },
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }).then(() => {
-          setDocuments([...documents, {title: image.name.split('.')[0], document_url: url}])
-        })
-    })
-    .catch(res => console.log(res.data))
-  }
+      .then (res => res.data)
+      .then (data => setHouseData(data))
+  }, [id])
 
   const updateStatus = (i, newStatus) => {
     setMaintenances([...maintenances.slice(0, i), {...maintenances[i], status: newStatus}, ...maintenances.slice(i + 1)])
@@ -96,7 +90,7 @@ const PropertyShowPage = (props) => {
       </div>
       <CardContainer heading={'Tenants'}>
         {houseData.tenants.map(tenant => (
-            <UserCard {...tenant} />
+            <UserCard key={tenant.id} {...tenant} />
           ))}
       </CardContainer>
       <CardContainer 
@@ -114,15 +108,15 @@ const PropertyShowPage = (props) => {
         <form>
           <input
               ref={inputRef}
-              class="image-upload-input" 
+              className="image-upload-input" 
               type="file" 
               onChange={(e)=> {
-                  e.target.files[0] != undefined && setImage(e.target.files[0])
+                  e.target.files[0] !== undefined && setImage(e.target.files[0])
               }}>
           </input>
         </form>
         {documents.map((_, i) => (
-          <DocumentCard {...documents[documents.length - 1 - i]} />
+          <DocumentCard key={i} {...documents[documents.length - 1 - i]} />
         ))}
       </CardContainer>
       <CardContainer heading="Maintenance">
