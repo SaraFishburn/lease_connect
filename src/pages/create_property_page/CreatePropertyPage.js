@@ -31,8 +31,8 @@ const CreatePropertyPage = () => {
               headers: {
                   "Content-Type": "application/json",
               },
-          })
-      })
+            })
+        })
       .catch(res => console.log(res.data))
       setFormValues(defaultFormValues)
   }

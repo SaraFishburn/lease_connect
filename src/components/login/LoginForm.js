@@ -33,8 +33,12 @@ function LoginForm(props) {
         .then(() => {
             props.setUser(true)
             history.push("/")
-        })
-    }
+        },
+        (error) => {
+                alert(error)
+            }
+        )
+        }
 
     return (
         <div className="formDiv">
