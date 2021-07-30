@@ -34,4 +34,12 @@
     align-items: center;
 
   }
+
+  .formDiv {
+    display: flex;
+  }
+
+  .card-middle {
+    flex-direction: row;
+  }
 }
