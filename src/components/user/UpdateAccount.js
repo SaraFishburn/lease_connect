@@ -32,7 +32,6 @@ function UpdateAccount(props) {
     }
 
     const handleSubmit = async (event) => {
-        alert(`${formValues.name} account updated!`)
         event.preventDefault()
         const res = await API.request("users", {
             method: "PATCH",
@@ -40,7 +39,8 @@ function UpdateAccount(props) {
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+        })
+        .then(alert(`${formValues.name} account updated!`))
         setFormValues(defaultFormValues)
     }
 

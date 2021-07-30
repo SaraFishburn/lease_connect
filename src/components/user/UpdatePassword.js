@@ -18,7 +18,6 @@ const UpdatePassword = () => {
     }
 
     const handleSubmit = async (event) => {
-        alert("Password successfully updated!")
         event.preventDefault()
         const res = await API.request("users", {
             method: "PATCH",
@@ -26,7 +25,9 @@ const UpdatePassword = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-        });
+        })
+        .then(() => alert("Password successfully updated!"))
+        .catch(err => alert(err.response.data.error))
         setFormValues(defaultFormValues)
     }
 
