@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import NewHouse from "../../components/house/NewHouse"
-import NewEvent from '../../components/event/NewEvent'
 import API from '../../helpers/api'
 
 const CreatePropertyPage = () => {

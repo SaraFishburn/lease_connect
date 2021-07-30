@@ -4,7 +4,7 @@ import "./styles.scss"
 function NewHouse(props) {
 
     return (
-        <div class="formDiv">
+        <div className="formDiv">
             <form onSubmit={props.handleSubmit}>
             <h1>{`${props.action}`}</h1>
                 <label>Title:</label>
@@ -13,7 +13,7 @@ function NewHouse(props) {
                     type="text" 
                     value={props.formValues.title} 
                     onChange={props.handleChange} 
-                    placeholder={`${props.formValues.title != "" ? `${props.formValues.title}` : ""}`}/>
+                    placeholder={`${props.formValues.title !== "" ? `${props.formValues.title}` : ""}`}/>
 
                 <label>Address:</label>
                 <input 
@@ -21,7 +21,7 @@ function NewHouse(props) {
                     type="text" 
                     value={props.formValues.address}
                     onChange={props.handleChange} 
-                    placeholder={`${props.formValues.address != "" ? `${props.formValues.address}` : ""}`} />
+                    placeholder={`${props.formValues.address !== "" ? `${props.formValues.address}` : ""}`} />
 
                 <ImageUpload setUploadImage={props.setUploadImage} url={props.url}/>
 

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {
-  useParams
-} from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import NewHouse from "../../components/house/NewHouse"
 import CardContainer from '../../components/card_container/CardContainer'
 import UserCard from '../../components/user/UserCard'
@@ -9,23 +7,33 @@ import UserCard from '../../components/user/UserCard'
 import './styles.scss'
 import API from '../../helpers/api'
 
-const UpdatePropertyPage = () => {
 
+
+const UpdatePropertyPage = () => {
   const [uploadImage, setUploadImage] = useState(() => () => {})
   const { id } = useParams()
 
   const [houseData, setHouseData] = useState({
-    property: {},
+    property: {
+      title: '',
+      address: '',
+      image_url: '',
+    },
     tenants: []
   })
-  const [formValues, setFormValues] = useState({})
+  const [formValues, setFormValues] = useState({
+    title: '',
+    address: '',
+    image_url: '',
+    tenants: []
+  })
   const [possibleTenants, setPossibleTenants] = useState([])
 
   useEffect(() => {
     API.request(`houses/${id}`)
         .then (res => res.data)
         .then (data => setHouseData(data))
-  }, [])
+  }, [id])
 
   useEffect(() => {
     if(!houseData) return
@@ -69,7 +77,7 @@ const UpdatePropertyPage = () => {
   }
 
   function addTenant(e) {
-    const tenant = possibleTenants.find(tenant => tenant.id == e.currentTarget.value)
+    const tenant = possibleTenants.find(tenant => tenant.id === e.currentTarget.value)
 
     setHouseData({
       property: houseData.property,
@@ -86,12 +94,13 @@ const UpdatePropertyPage = () => {
     return possibleTenants.filter(tenant => !houseTenantIds.includes(tenant.id))
   }
 
+
   function deleteUser(id) {
 
     if (!window.confirm('Are you sure?')) {
       return
     }
-    const index = houseData.tenants.findIndex(tenant => tenant.id == id)
+    const index = houseData.tenants.findIndex(tenant => tenant.id === id)
     
     const tenants = [...houseData.tenants.slice(0, index), ...houseData.tenants.slice(index + 1)]
 
@@ -106,8 +115,7 @@ const UpdatePropertyPage = () => {
   }
 
   return (
-    
-    <NewHouse 
+    <NewHouse
       handleChange={handleChange} 
       handleSubmit={handleSubmit} 
       formValues={formValues} 
@@ -116,15 +124,15 @@ const UpdatePropertyPage = () => {
       url={houseData.property.image_url}>
 
       <CardContainer heading={"Tenants"}>
-        {houseData.tenants.map((tenant) => (
-          <UserCard {...tenant} deleteUser={() => deleteUser(tenant.id)} />
-        ))}
+        {houseData && houseData.tenants.map((tenant) => {
+          return <UserCard key={tenant.id} {...tenant} deleteUser={() => deleteUser(tenant.id)} />
+        })}
       </CardContainer>
-      <select name='tenant_id' value={''} onChange={addTenant}>
-        <option value='' disabled selected>Add Tenant</option>
-        {calculatedPossibleTenants().map(tenant => (
-          tenant.role_name === "tenant" && <option value={tenant.id}>{tenant.name}</option>
-        ))}
+      <select name='tenant_id' onChange={addTenant} value='Add Tenant' >
+        <option value='Add Tenant' disabled>Add Tenant</option>
+        {calculatedPossibleTenants().map(tenant => {
+          return tenant.role_name === "tenant" && <option key={tenant.id} value={tenant.id}>{tenant.name}</option>
+        })}
     
       </select>
       

@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import {
-    useHistory
-} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import API from '../../helpers/api'
 import './styles.scss'
@@ -25,21 +23,21 @@ function LoginForm(props) {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        const res = API.request("sessions/sign_in", {
+        API.request("sessions/sign_in", {
             method: "POST",
             data: formValues,
             headers: {
                 "Content-Type": "application/json",
             },
         })
-        .then(res => {
+        .then(() => {
             props.setUser(true)
             history.push("/")
         })
     }
 
     return (
-        <div class="formDiv">
+        <div className="formDiv">
             <form onSubmit={handleSubmit}>
                 <label>Email :</label><input name='email' type="text" value={formValues.email} onChange={handleChange} />
                 <label>Password :</label><input name='password' type="password" value={formValues.password} onChange={handleChange} />

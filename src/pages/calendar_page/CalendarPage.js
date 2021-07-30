@@ -41,7 +41,7 @@ const CalendarPage = (props) => {
   
   return (
     <>
-      <div class="calendar-page" style={{transform:  `scale(calc(1 + ${
+      <div className="calendar-page" style={{transform:  `scale(calc(1 + ${
         windowWidth > 350 ?
         (windowWidth / 10000) * 1.3
         :
@@ -52,14 +52,17 @@ const CalendarPage = (props) => {
           <Calendar {...{events: formattedEvents(events), setCurrentMonth, currentMonth }}/>
           <div className="event-tile-wrapper">
             {
-              events.length == 0 ?
+              events.length === 0 ?
               <div className="event-tile no-events">{`No events to display for ${Dayjs(currentMonth).format('MMMM')}`}</div>
               :
               events.map(event => {
-              if (Dayjs(event.datetime).format('MM-YYYY') == Dayjs(currentMonth).format('MM-YYYY')) {
-                return <Event {...{event}} />
-              }
-            })}
+                if (Dayjs(event.datetime).format('MM-YYYY') === Dayjs(currentMonth).format('MM-YYYY')) {
+                  return <Event key={event.id} {...{event}} />
+                }
+                else {
+                  return <></>
+                }
+              })}
           </div>
         </div>
       </div>

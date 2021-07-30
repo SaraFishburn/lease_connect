@@ -1,4 +1,3 @@
-import React, {useState} from 'react'
 import "./styles.scss"
 
 import {Icon} from "@iconify/react";
@@ -29,7 +28,7 @@ export default function MaintenanceDisplay(props) {
                     <div className="card-middle">
                         <div className='img-frame'>
                             <Icon icon={bxImageAlt} className="img-placeholder" color="#2A2B77"/>
-                            <img src={props.image_url} height="150px"/>
+                            <img src={props.image_url} height="150px" alt={`${props.title}`}/>
                         </div>
                         <div>
                             <div className="radio-buttons" name='role_name'>

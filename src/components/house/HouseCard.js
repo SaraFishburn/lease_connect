@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {
-    Link,
-  } from "react-router-dom";
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
 import "./styles.scss"
 
 import { Icon } from '@iconify/react';
@@ -14,18 +12,18 @@ export default function HouseCard(props) {
     const [deleteHover, setDeleteHover] = useState()
 
     return (
-        <div class="house-card" onClick={props.onClick}>
-            <div class="card-content">
+        <div className="house-card" onClick={props.onClick}>
+            <div className="card-content">
                 <h1>{props.title}</h1>
-                <div class="card-middle">
+                <div className="card-middle">
                     <div className='img-frame'>
                         <Icon icon={bxImageAlt} className="img-placeholder" color="#2A2B77" />
-                        <img src={props.image_url} height="150px"/>
+                        <img src={props.image_url} height="150px" alt={`${props.title}`}/>
                     </div>
                     <p>{props.address}</p>
                 </div>
             </div>     
-            <div class="card-icons">
+            <div className="card-icons">
                 <div 
                     className="edit-icon-div"
                     onMouseEnter={() => setEditHover(true)}

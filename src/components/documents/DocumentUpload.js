@@ -20,13 +20,13 @@ const DocumentUpload = (props) => {
     }
 
     return (
-        <div class="document-div">
-        <div class="document-container">
-            <div class="document-upload">
-                <input class="document-upload-input" type="file" onChange= {(e)=> setDocument(e.target.files[0])}></input>
-                <button class="document-upload-button" onClick={uploadDocument}>Upload</button>
+        <div className="document-div">
+        <div className="document-container">
+            <div className="document-upload">
+                <input className="document-upload-input" type="file" onChange= {(e)=> setDocument(e.target.files[0])}></input>
+                <button className="document-upload-button" onClick={uploadDocument}>Upload</button>
             </div>
-            <div class="document-preview">
+            <div className="document-preview">
                 <h1>Uploaded DocumentUpload will be displayed here</h1>
                 <img src={props.url} width="100rem"/>
             </div>

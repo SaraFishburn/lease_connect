@@ -33,7 +33,7 @@ function UpdateAccount(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await API.request("users", {
+        await API.request("users", {
             method: "PATCH",
             data: JSON.stringify(formValues),
             headers: {
@@ -45,7 +45,7 @@ function UpdateAccount(props) {
     }
 
     return (
-        <div class="formDiv my-account-div">
+        <div className="formDiv my-account-div">
             <form onSubmit={handleSubmit}>
                 <h1>My {roleName} Account</h1>
                 <label>Name :</label><input name='name' type="text" value={formValues.name} onChange={handleChange} />

@@ -26,50 +26,54 @@ const ImageUpload = (props) => {
     useEffect(() => {
         if(!props.setUploadImage) return
 
+        const uploadImage = () => {
+            if(image === "" && !previewURL) {
+                return new Promise((_, rej) => rej("No Image Supplied! :'("))
+            }
+            if(image === "") {
+                return new Promise(res => res(previewURL))
+            } else {
+                const data = new FormData()
+                data.append("file", image)
+                data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
+                data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
+                return fetch( process.env.REACT_APP_IMAGE_FETCH , {
+                    method:"post",
+                    body: data
+                })
+                .then(res => res.json())
+                .then(image_data => image_data.url)
+            }
+        }
+
         props.setUploadImage(_ => uploadImage)
+    // If props is added to useEffect dependencies it causes an infinite re-render loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [image, props.setUploadImage, previewURL])
 
-    function uploadImage() {
-        if(image === "" && !previewURL) {
-            return new Promise((_, rej) => rej("No Image Supplied! :'("))
-        }
-        if(image === "") {
-            return new Promise(res => res(previewURL))
-        } else {
-            const data = new FormData()
-            data.append("file", image)
-            data.append("upload_preset", process.env.REACT_APP_IMAGE_PRESET )
-            data.append("cloud_name", process.env.REACT_APP_IMAGE_ACCOUNT )
-            return fetch( process.env.REACT_APP_IMAGE_FETCH , {
-                method:"post",
-                body: data
-            })
-            .then(res => res.json())
-            .then(image_data => image_data.url)
-        }
-    }
-
     return (
-        <div class="image-div">
+        <div className="image-div">
             <div 
-                class={ `image-upload ${image === "" ? "upload-mode" : ""}`} 
+                className={ `image-upload ${image === "" ? "upload-mode" : ""}`} 
                 onClick={() => inputRef.current.click()}>
 
                     <Icon icon={bxImageAdd} className="image-icon" color="#2A2B77"/>
                     <input
                         ref={inputRef}
-                        class="image-upload-input" 
+                        className="image-upload-input" 
                         type="file" 
                         onChange={(e)=> {
-                            e.target.files[0] != undefined && (
+                            e.target.files[0] !== undefined && (
                                 setImage(e.target.files[0])
                             )
                         }}>
                     </input>
                     <span>Click to upload image</span>
             </div>
-            <div class={`image-preview ${previewURL ? "preview-background" : ""}`}>
-                <img src={previewURL} height="125%"/>
+            <div className={`image-preview ${previewURL ? "preview-background" : ""}`}>
+                {
+                    previewURL && <img src={previewURL} height="125%" alt="preview upload"/>
+                }
             </div>
 
             {

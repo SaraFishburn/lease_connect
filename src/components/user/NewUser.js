@@ -9,24 +9,20 @@ function NewUser() {
         password: "",
         phone_number: "",
         role_name: "tenant",
-        house_id: "",
+        house_id: "Select Property",
         houses: [],
     }
 
     const [formValues, setFormValues] = useState(defaultFormValues);
 
-    const getHouses = () => {
+    useEffect(() => {
         API.request('houses')
             .then (results => results.data)
             .then (results => setFormValues({
                 ...formValues,
                 houses: results
-            }))
-    }
-
-    useEffect(() => {
-        getHouses()
-    }, [])
+        }))
+    }, [formValues])
 
 
     const handleChange = (e) => {
@@ -57,7 +53,7 @@ function NewUser() {
     }
 
     return (
-        <div class="formDiv">
+        <div className="formDiv">
             <form onSubmit={handleSubmit}>
                 <h1>Create Account</h1>
                 <label className="role">Role:
@@ -81,9 +77,9 @@ function NewUser() {
                 <label>Phone :</label><input name='phone_number' type="text" value={formValues.phone_number} onChange={handleChange} />
                 <label>Temp Password :</label><input name='password' type="text" value={formValues.password} onChange={handleChange} />
                 <select name='house_id' value={formValues.house_id} onChange={handleChange}>
-                    <option value='' disabled selected>Select Property</option>
+                    <option value='Select Property' disabled>Select Property</option>
                     {formValues.houses.map(house => (
-                        <option value={house.id}>{house.title}</option>
+                        <option key={house.id} value={house.id}>{house.title}</option>
                     ))}
                 </select>
                 <input type="submit" value="Create Account" />

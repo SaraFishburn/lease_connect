@@ -40,7 +40,7 @@ function NewDocument() {
     }
 
     return (
-        <div class="formDiv">
+        <div className="formDiv">
             <form onSubmit={handleSubmit}>
             <h1>New Document</h1>
                 <label>Title :</label><br/><input name='title' type="text" value={formValues.title} onChange={handleChange} placeholder="Document Title..." /><br />
