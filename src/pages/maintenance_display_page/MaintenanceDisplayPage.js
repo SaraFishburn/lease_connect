@@ -6,17 +6,15 @@ import CardContainer from "../../components/card_container/CardContainer";
 
 export const MaintenanceDisplayPage = (props) => {
 
-    const [maintenance, setMaintenanceRequests] = useState ([])
+    const [maintenances, setMaintenances] = useState ([])
 
     useEffect(() => {
-        console.log(props)
-
-        API.request('/maintenances')
-        .then(res => setMaintenanceRequests(res.data))
-    },[props])
+        API.request(`houses/${props.id}/maintenances`)
+        .then(res => setMaintenances(res.data))
+    },[])
 
     console.log("Down")
-    console.log(maintenance)
+    console.log(maintenances)
     console.log("Up")
 
     return (
@@ -25,8 +23,8 @@ export const MaintenanceDisplayPage = (props) => {
             <a className="new-request-button" href={"/new_maintenance_request"}>New request</a>
 
 
-            {maintenance.map((_, i) => (
-                <MaintenanceDisplay {...maintenance[maintenance.length - 1 - i]} />
+            {maintenances.map((_, i) => (
+                <MaintenanceDisplay {...maintenances[maintenances.length - 1 - i]} />
             ))}
 
 

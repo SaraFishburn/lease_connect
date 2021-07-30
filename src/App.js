@@ -69,13 +69,13 @@ function App() {
     },
     {
       name: "MAINTENANCE",
-      page: <MaintenanceDisplayPage />, 
+      page: <MaintenanceDisplayPage {...userData.house}/>, 
       path: "/maintenance", 
       auth: ["tenant"]
     },
     {
       name: null,
-      page: <MaintenanceRequestPage />, 
+      page: <MaintenanceRequestPage {...userData.house}/>, 
       path: "/new_maintenance_request", 
       auth: ["tenant"]
     },

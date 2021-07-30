@@ -4,7 +4,7 @@ import API, {request} from "../../helpers/api";
 import './styles.scss'
 
 
-export const MaintenanceRequestPage = () => {
+export const MaintenanceRequestPage = (props) => {
     const [uploadImage, setUploadImage] = useState(() => () => {})
 
     const defaultFormValues = {
@@ -27,7 +27,7 @@ export const MaintenanceRequestPage = () => {
 
         uploadImage()
             .then(url => {
-                API.request("maintenances", {
+                API.request(`houses/${props.id}/maintenances`, {
                     method: "POST",
                     data: {...formValues, image_url: url},
                     headers: {
