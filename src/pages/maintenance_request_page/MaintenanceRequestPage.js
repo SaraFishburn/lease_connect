@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {MaintenanceRequest} from "../../components/maintenance_request/MaintenanceRequest";
 import API, {request} from "../../helpers/api";
+import './styles.scss'
 
 
 export const MaintenanceRequestPage = () => {
