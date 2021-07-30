@@ -38,13 +38,21 @@ function NewUser() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const res = await API.request("users", {
+        API.request("users", {
             method: "POST",
             data: JSON.stringify(formValues),
             headers: {
                 "Content-Type": "application/json",
+                "Accept": "application/json"
             },
-        });
+        })
+        .then( 
+            (response) => console.log("this worked"),
+            (error) => {
+                alert(error.response.data)
+            }
+        )
+        .catch(() => console.log("foo"))
         setFormValues(defaultFormValues)
     }
 
