@@ -48,7 +48,6 @@ function NewUser() {
                 alert(error.response.data)
             }
         )
-        .catch(() => console.log("foo"))
         setFormValues(defaultFormValues)
     }
 
