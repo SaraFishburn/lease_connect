@@ -32,15 +32,15 @@ function App() {
   const [role, setRole] = useState('')
   const [navList, setNavList] = useState([])
 
-  useEffect(() => {
-    if(user) {
-      API.request('user')
-      .then(res => {
-        setUserData(res.data)
-        setRole(res.data.role_name)
-      })
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if(user) {
+  //     API.request('user')
+  //     .then(res => {
+  //       setUserData(res.data)
+  //       setRole(res.data.role_name)
+  //     })
+  //   }
+  // }, [user])
 
   let pageList = [
     {
@@ -124,7 +124,7 @@ function App() {
 
         <Switch>
           <PublicRoute path="/login">
-            <LoginPage setUser={setUser} />
+            <LoginPage setUser={setUser} setUserData={setUserData} setRole={setRole}/>
           </PublicRoute>
 
           {

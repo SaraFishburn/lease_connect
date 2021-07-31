@@ -20,7 +20,7 @@ export default function UserCard(props) {
             </div>     
             <div
               className="card-icons"
-              onMouseEnter={() => setHover(true)}
+              onMouseEnter={() => setHover(true)} 
               onMouseLeave={() => setHover(false)}
               onClick={props.deleteUser}>
               <Icon
