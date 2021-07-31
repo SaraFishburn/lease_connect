@@ -32,11 +32,9 @@ function LoginForm(props) {
         })
         .then((res) => {
             props.setUser(true)
-            props.setUserData(res.data.user)
-            props.setRole(res.data.user.role_name)
             history.push("/")
         },
-        (error) => {
+            (error) => {
                 alert(error)
             }
         )
